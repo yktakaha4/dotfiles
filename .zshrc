@@ -1,3 +1,7 @@
+# options
+
+setopt histignorealldups sharehistory prompt_subst ignoreeof auto_cd auto_pushd pushd_ignore_dups no_flow_control
+
 # env
 export EDITOR="vim"
 export PAGER="less"
@@ -13,8 +17,6 @@ zstyle ':vcs_info:git:*' stagedstr "!"
 zstyle ':vcs_info:git:*' unstagedstr "+"
 zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-
-setopt histignorealldups sharehistory prompt_subst
 
 function precmd() { vcs_info }
 
@@ -34,8 +36,10 @@ then
 
   # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/highlighters/main/main-highlighter.zsh
   ZSH_HIGHLIGHT_STYLES[arg0]="fg=blue"
-  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=014"
-  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=014"
+  ZSH_HIGHLIGHT_STYLES[precommand]="fg=012,underline"
+  ZSH_HIGHLIGHT_STYLES[autodirectory]="fg=012,underline"
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=012"
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=012"
 fi
 
 # Use modern completion system
@@ -60,6 +64,10 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# bindkeys
+stty erase ^H
+bindkey "^[[3~" delete-char
+
 # alias
 alias ls='ls --color'
 alias ll='ls -l'
@@ -71,6 +79,7 @@ alias less='less -R'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias .='source'
 
 which xclip > /dev/null || sudo apt-get install -y xclip
 alias pbcopy='xclip -selection c'
