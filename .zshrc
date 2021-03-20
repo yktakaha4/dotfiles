@@ -1,3 +1,7 @@
+# env
+export EDITOR="vim"
+export PAGER="less"
+
 # Set up the prompt
 
 autoload -Uz promptinit && promptinit
@@ -16,7 +20,7 @@ function precmd() { vcs_info }
 
 PROMPT='
 %F{blue}%~%f%F{008}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
-%F{magenta}$%f '
+%(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE="10000"
@@ -73,4 +77,8 @@ alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection c -o'
 
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
+
+# rcfiles and configs
+[[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
+[[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
 
