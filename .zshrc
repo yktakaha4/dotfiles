@@ -64,10 +64,6 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# bindkeys
-stty erase ^H
-bindkey "^[[3~" delete-char
-
 # alias
 alias ls='ls --color'
 alias ll='ls -l'
@@ -100,8 +96,7 @@ which direnv >/dev/null || curl -sfL https://direnv.net/install.sh | bash
 eval "$(direnv hook zsh)"
 
 # pyenv
-[[ -e "$HOME/.pyenv" ]] || git clone "https://github.com/pyenv/pyenv.git" "$HOME/.pyenv"
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.dotfiles/submodules/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
@@ -109,8 +104,7 @@ eval "$(pyenv init -)"
 export PIPENV_VENV_IN_PROJECT="true"
 
 # nodenv
-[[ -e "$HOME/.nodenv" ]] || git clone "https://github.com/nodenv/nodenv.git" "$HOME/.nodenv"
-export PATH="$HOME/.nodenv/bin:$PATH"
+export PATH="$HOME/.dotfiles/submodules/nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
 # gvm
@@ -118,12 +112,10 @@ eval "$(nodenv init -)"
 source "$HOME/.gvm/scripts/gvm"
 
 # tfenv
-[[ -e "$HOME/.tfenv" ]] || git clone https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
-export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
 
 # jenv
-[[ -e "$HOME/.jenv" ]] || git clone "https://github.com/jenv/jenv.git" "$HOME/.jenv"
-export PATH="$HOME/.jenv/bin:$PATH"
+export PATH="$HOME/.dotfiles/submodules/jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 # compile
