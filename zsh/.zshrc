@@ -1,18 +1,25 @@
 # Set up the prompt
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
+autoload -Uz promptinit && promptinit
+autoload -Uz colors && colors
+autoload -Uz vcs_info
 
-setopt histignorealldups sharehistory
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+setopt histignorealldups sharehistory prompt_subst
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
+PROMPT="
+%F{blue}%~%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
+%F{magenta}$%f "
+
+# Keep lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE="10000"
+SAVEHIST="10000"
+HISTFILE="$HOME/.zsh_history"
 
 # Use modern completion system
 autoload -Uz compinit
@@ -36,7 +43,28 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# alias
+alias ll='ls -l'
+alias la='ls -la'
+alias l='ll'
 
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
-# install
-echo $0
+which xclip > /dev/null || sudo apt-get install -y xclip
+alias pbcopy='xclip -selection c'
+alias pbpaste='xclip -selection c -o'
+
+alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
+
+# syntax-highliting
+if [[ -f "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
+then
+  source "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/highlighters/main/main-highlighter.zsh
+  ZSH_HIGHLIGHT_STYLES[arg0]="fg=blue"
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=014"
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=014"
+fi
