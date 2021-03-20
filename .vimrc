@@ -15,3 +15,6 @@ set encoding=utf8
 if exists('&ambw')
   set ambiwidth=double
 endif
+
+" commands
+command! DeleteAnsi %s/\[[0-9;]*m//g
