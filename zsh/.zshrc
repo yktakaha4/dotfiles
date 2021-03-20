@@ -5,16 +5,18 @@ autoload -Uz colors && colors
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:git:*' stagedstr "!"
+zstyle ':vcs_info:git:*' unstagedstr "+"
+zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 setopt histignorealldups sharehistory prompt_subst
 
-PROMPT="
-%F{blue}%~%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
-%F{magenta}$%f "
+function precmd() { vcs_info }
+
+PROMPT='
+%F{blue}%~%f%F{008}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
+%F{magenta}$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE="10000"
@@ -59,6 +61,8 @@ alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -la'
 alias l='ll'
+
+alias less='less -R'
 
 alias cp='cp -i'
 alias mv='mv -i'
