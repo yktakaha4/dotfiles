@@ -2,13 +2,12 @@
 	email = 20282867+yktakaha4@users.noreply.github.com
 	name = Yuuki Takahashi
 [alias]
-	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+        ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
         a = "add ."
         co = "commit -m"
         ch = "checkout"
         chb = "checkout -b"
-        chm = "checkout master"
-        chd = "!gchd() { git checkout \"$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')\"; }; gchd"
+        chm = "!gchm() { git checkout \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gchm"
         cfg = "config --list"
         d = "diff"
         ds = "diff --staged"
@@ -18,7 +17,7 @@
         lv = "log --oneline --graph --pretty=fuller"
         ps = "push origin HEAD"
         pl = "pull origin HEAD"
-        rbm = "rebase master HEAD"
+        rbm = "!grbm() { rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\" HEAD; }; grbm"
 [credential "https://github.com"]
 	helper = !gh auth git-credential
 [core]
