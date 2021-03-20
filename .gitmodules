@@ -4,3 +4,15 @@
 [submodule "submodules/zsh-syntax-highlighting"]
 	path = submodules/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "submodules/pyenv"]
+	path = submodules/pyenv
+	url = https://github.com/pyenv/pyenv.git
+[submodule "submodules/nodenv"]
+	path = submodules/nodenv
+	url = https://github.com/nodenv/nodenv.git
+[submodule "submodules/tfenv"]
+	path = submodules/tfenv
+	url = https://github.com/tfutils/tfenv.git
+[submodule "submodules/jenv"]
+	path = submodules/jenv
+	url = https://github.com/jenv/jenv.git
