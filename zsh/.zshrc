@@ -21,6 +21,17 @@ HISTSIZE="10000"
 SAVEHIST="10000"
 HISTFILE="$HOME/.zsh_history"
 
+# syntax-highliting
+if [[ -f "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
+then
+  source "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/highlighters/main/main-highlighter.zsh
+  ZSH_HIGHLIGHT_STYLES[arg0]="fg=blue"
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=014"
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=014"
+fi
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -44,6 +55,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # alias
+alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -la'
 alias l='ll'
@@ -58,13 +70,3 @@ alias pbpaste='xclip -selection c -o'
 
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 
-# syntax-highliting
-if [[ -f "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
-then
-  source "$HOME/.dotfiles/submodules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/highlighters/main/main-highlighter.zsh
-  ZSH_HIGHLIGHT_STYLES[arg0]="fg=blue"
-  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=014"
-  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=014"
-fi
