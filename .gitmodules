@@ -16,3 +16,6 @@
 [submodule "submodules/jenv"]
 	path = submodules/jenv
 	url = https://github.com/jenv/jenv.git
+[submodule "submodules/direnv"]
+	path = submodules/direnv
+	url = https://github.com/direnv/direnv.git

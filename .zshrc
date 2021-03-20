@@ -92,7 +92,7 @@ alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%
 which curl >/dev/null || sudo apt-get install -y curl
 
 # direnv
-which direnv >/dev/null || curl -sfL https://direnv.net/install.sh | bash
+which direnv >/dev/null || bash "$HOME/.dotfiles/submodules/direnv/install.sh"
 eval "$(direnv hook zsh)"
 
 # pyenv
