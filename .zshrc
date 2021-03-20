@@ -21,7 +21,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 function precmd() { vcs_info }
 
 PROMPT='
-%F{blue}%~%f%F{008}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
+%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
@@ -99,6 +99,7 @@ eval "$(direnv hook zsh)"
 export PYENV_ROOT="$HOME/.dotfiles/submodules/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
