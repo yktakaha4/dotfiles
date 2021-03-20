@@ -6,6 +6,7 @@
         a = "add ."
         b = "branch"
         co = "commit -m"
+        coa = "commit --amend"
         ch = "checkout"
         chb = "checkout -b"
         chm = "!gchm() { git checkout \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gchm"
