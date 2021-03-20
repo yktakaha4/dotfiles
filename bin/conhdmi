@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+set -e
+
 function conhdmi() {
   if [[ "$(printenv DISPLAY)" != "" ]]
   then
@@ -17,3 +19,13 @@ function disconhdmi() {
     --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rate 59.98 \
     --output HDMI-0 --off
 }
+
+##########
+
+while getopts d OPT
+do
+  case $OPT in
+     d) disconhdmi;;
+     *) conhdmi;;
+  esac
+done
