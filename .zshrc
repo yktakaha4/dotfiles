@@ -82,3 +82,43 @@ alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%
 [[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
 
+# envs
+
+which curl >/dev/null || sudo apt-get install -y curl
+
+# direnv
+which direnv >/dev/null || curl -sfL https://direnv.net/install.sh | bash
+eval "$(direnv hook zsh)"
+
+# pyenv
+[[ -e "$HOME/.pyenv" ]] || git clone "https://github.com/pyenv/pyenv.git" "$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# pipenv
+export PIPENV_VENV_IN_PROJECT="true"
+
+# nodenv
+[[ -e "$HOME/.nodenv" ]] || git clone "https://github.com/nodenv/nodenv.git" "$HOME/.nodenv"
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
+
+# gvm
+[[ -e "$HOME/.gvm" ]] || zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+source "$HOME/.gvm/scripts/gvm"
+
+# tfenv
+[[ -e "$HOME/.tfenv" ]] || git clone https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
+export PATH="$HOME/.tfenv/bin:$PATH"
+
+# jenv
+[[ -e "$HOME/.jenv" ]] || git clone "https://github.com/jenv/jenv.git" "$HOME/.jenv"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# compile
+if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
+then
+   zcompile "$HOME/.zshrc"
+fi
