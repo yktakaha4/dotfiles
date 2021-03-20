@@ -123,3 +123,10 @@ if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
 then
    zcompile "$HOME/.zshrc"
 fi
+
+# files
+find "$HOME/.dotfiles/zsh.d" -name '*.zsh' |
+while read f
+do
+  source $f
+done
