@@ -129,6 +129,10 @@ then
   vim +PluginInstall +qall
 fi
 
+# xinput
+[[ -f "$HOME/.xmodmap" ]] || ln -s "$HOME/.dotfiles/.xmodmap" "$HOME/.xmodmap"
+[[ -f "$HOME/.xinputrc" ]] || ln -s "$HOME/.dotfiles/.xinputrc" "$HOME/.xinputrc"
+
 # envs
 
 which curl >/dev/null || sudo apt-get install -y curl
