@@ -44,7 +44,7 @@ command! DeleteAnsi %s/\[[0-9;]*m//g
 " maps
 
 " regexp very magic
-:nnoremap / /\v
+" :nnoremap / /\v
 
 " plugin settings
 
