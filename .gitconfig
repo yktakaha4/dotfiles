@@ -20,6 +20,7 @@
         ps = "push origin HEAD"
         pl = "pull origin HEAD"
         rbm = "!grbm() { rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\" HEAD; }; grbm"
+        subu = "submodule update --init --recursive"
 [credential "https://github.com"]
 	helper = !gh auth git-credential
 [core]
