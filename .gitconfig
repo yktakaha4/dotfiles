@@ -1,29 +1,29 @@
 [user]
-	email = 20282867+yktakaha4@users.noreply.github.com
-	name = Yuuki Takahashi
+  email = 20282867+yktakaha4@users.noreply.github.com
+  name = Yuuki Takahashi
 [alias]
-        ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-        i = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-        a = "add ."
-        b = "branch"
-        co = "commit -m"
-        coa = "commit --amend"
-        ch = "checkout"
-        chb = "checkout -b"
-        chm = "!gchm() { git checkout \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gchm"
-        cfg = "config --list"
-        d = "diff"
-        ds = "diff --staged"
-        f = "fetch -p"
-        s = "status -s"
-        l = "log --oneline --graph --decorate"
-        lv = "log --oneline --graph --pretty=fuller"
-        ps = "push origin HEAD"
-        pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
-        rbm = "!grbm() { git rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\" HEAD; }; grbm"
-        subu = "submodule update --init --recursive"
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  i = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  a = "add ."
+  b = "branch"
+  co = "commit -m"
+  coa = "commit --amend"
+  ch = "checkout"
+  chb = "checkout -b"
+  chm = "!gchm() { git checkout \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gchm"
+  cfg = "config --list"
+  d = "diff"
+  ds = "diff --staged"
+  f = "fetch -p"
+  s = "status -s"
+  l = "log --oneline --graph --decorate"
+  lv = "log --oneline --graph --pretty=fuller"
+  ps = "push origin HEAD"
+  pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
+  rbm = "!grbm() { git rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\" HEAD; }; grbm"
+  subu = "submodule update --init --recursive"
 [credential "https://github.com"]
-	helper = !gh auth git-credential
+  helper = !gh auth git-credential
 [core]
-	longpaths = true
-	excludesfile = /home/tkhs/.gitignore_global
+  longpaths = true
+  excludesfile = /home/tkhs/.gitignore_global
