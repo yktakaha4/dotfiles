@@ -37,3 +37,23 @@ set encoding=utf8
 
 " commands
 command! DeleteAnsi %s/\[[0-9;]*m//g
+
+" plugin settings
+
+" im_control
+
+" 「日本語入力固定モード」の動作モード
+let IM_CtrlMode = 1
+" 「日本語入力固定モード」切替キー
+inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+
+" IBus 1.5以降
+function! IMCtrl(cmd)
+  let cmd = a:cmd
+  if cmd == 'On'
+    let res = system('ibus engine "mozc-jp"')
+  elseif cmd == 'Off'
+    let res = system('ibus engine "xkb:jp::jpn"')
+  endif
+  return ''
+endfunction
