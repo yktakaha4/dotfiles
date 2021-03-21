@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-tmp="$(mktemp)"
+tmp="$(mktemp vipe.XXXXXX)"
 
 set -e
 trap "rm -f \"$tmp\"" ERR

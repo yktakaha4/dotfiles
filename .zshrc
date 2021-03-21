@@ -81,7 +81,7 @@ alias .='source'
 which xclip > /dev/null || sudo apt-get install -y xclip
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection c -o'
-alias pbvim="pbpaste | vipe | pbcopy"
+alias pbvim="pbpaste | pvim | pbcopy"
 
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 
