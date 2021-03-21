@@ -1,5 +1,7 @@
 # dotfiles
 
+## usage
+
 ```
 git clone git@github.com:yktakaha4/dotfiles.git "$HOME/.dotfiles"
 
