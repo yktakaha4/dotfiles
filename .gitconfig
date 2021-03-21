@@ -13,7 +13,7 @@
         cfg = "config --list"
         d = "diff"
         ds = "diff --staged"
-        f = "fetch"
+        f = "fetch -p"
         s = "status -s"
         l = "log --oneline --graph --decorate"
         lv = "log --oneline --graph --pretty=fuller"
