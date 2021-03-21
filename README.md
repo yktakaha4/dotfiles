@@ -1,4 +1,4 @@
-# dotfiles
+# dotfiles🐧
 
 Inspired by [pure](https://github.com/sindresorhus/pure) prompt.
 
