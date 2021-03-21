@@ -25,7 +25,9 @@ function disconhdmi() {
 while getopts d OPT
 do
   case $OPT in
-     d) disconhdmi;;
-     *) conhdmi;;
+     d) disconhdmi; exit 0;;
+     *) exit 1;;
   esac
 done
+
+conhdmi
