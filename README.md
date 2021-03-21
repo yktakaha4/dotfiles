@@ -1,4 +1,4 @@
-hoge# dotfiles
+# dotfiles
 
 ## usage
 
