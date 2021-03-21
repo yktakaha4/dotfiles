@@ -11,7 +11,7 @@ export PAGER="less"
 
 autoload -Uz promptinit && promptinit
 autoload -Uz colors && colors
-autoload -Uz vcs_info
+autoload -Uz add-zsh-hook vcs_info
 
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "!"
@@ -19,10 +19,19 @@ zstyle ':vcs_info:git:*' unstagedstr "+"
 zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-function precmd() { vcs_info }
+function precmd_prompt() {
+  vcs_info
+  PROMPT_EXEC_TIME_NOW="$(date +%s%3N)"
+  PROMPT_EXEC_TIME="$(echo "scale=1; ($PROMPT_EXEC_TIME_NOW - ${PROMPT_EXEC_TIME_START:-"$PROMPT_EXEC_TIME_NOW"}) / 1000" | bc)s"
+}
+function preexec_prompt() {
+  PROMPT_EXEC_TIME_START="$(date +%s%3N)"
+}
+add-zsh-hook precmd precmd_prompt
+add-zsh-hook preexec preexec_prompt
 
 PROMPT='
-%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{yellow}%*%f
+%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
