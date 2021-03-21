@@ -3,6 +3,7 @@
 	name = Yuuki Takahashi
 [alias]
         ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+        i = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
         a = "add ."
         b = "branch"
         co = "commit -m"
