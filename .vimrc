@@ -32,9 +32,11 @@ set hlsearch
 set ignorecase
 set incsearch
 set smartcase
+set statusline=%F%m%r%h%w%=[%{&fileencoding}][%l/%L]
 set laststatus=2
 set clipboard=unnamedplus
 set encoding=utf8
+set scrolloff=999
 
 " commands
 command! DeleteAnsi %s/\[[0-9;]*m//g
