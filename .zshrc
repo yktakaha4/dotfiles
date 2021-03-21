@@ -19,8 +19,21 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
+function check_commits() {
+  git rev-parse >/dev/null 2>&1
+  if [[ $? -eq 0 ]]
+  then
+    UNPULLED_MARK="$(git log --oneline ..@{u} 2>/dev/null | wc -l | awk '$1>0{print "⇣"}')"
+    UNPUSHED_MARK="$(git log --oneline @{u}.. 2>/dev/null | wc -l | awk '$1>0{print "⇡"}')"
+    PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
+  else
+    PROMPT_COMMITS_MARK=""
+  fi
+}
+
 function precmd_prompt() {
   vcs_info
+  check_commits
   PROMPT_EXEC_TIME_NOW="$(date +%s%3N)"
   PROMPT_EXEC_TIME="$(echo "scale=1; ($PROMPT_EXEC_TIME_NOW - ${PROMPT_EXEC_TIME_START:-"$PROMPT_EXEC_TIME_NOW"}) / 1000" | bc)s"
 }
@@ -31,7 +44,7 @@ add-zsh-hook precmd precmd_prompt
 add-zsh-hook preexec preexec_prompt
 
 PROMPT='
-%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f%F{008}$vcs_info_msg_0_%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
+%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f%F{008}$vcs_info_msg_0_%F{cyan}$PROMPT_COMMITS_MARK%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
