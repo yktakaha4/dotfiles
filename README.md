@@ -4,7 +4,7 @@ Inspired by [pure](https://github.com/sindresorhus/pure) prompt.
 
 ![image](https://user-images.githubusercontent.com/20282867/111900847-1cdebc80-8a78-11eb-9ac9-1390da6457b3.png)
 
-## usage
+## Usage
 
 ```
 git clone git@github.com:yktakaha4/dotfiles.git "$HOME/.dotfiles"
