@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-"
+" うまく動かなかった
 " Plugin 'fuenor/im_control.vim'
 
 call vundle#end()
@@ -26,7 +26,7 @@ set nrformats-=octal
 set hidden
 set history=100
 set virtualedit=block
-set whichwrap=b,s,[,],<,>
+" set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set hlsearch
 set ignorecase
@@ -38,6 +38,11 @@ set encoding=utf8
 
 " commands
 command! DeleteAnsi %s/\[[0-9;]*m//g
+
+" maps
+
+" regexp very magic
+:nnoremap / /\v
 
 " plugin settings
 
