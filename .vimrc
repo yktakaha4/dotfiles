@@ -1,3 +1,16 @@
+" plugins
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'fuenor/im_control.vim'
+
+call vundle#end()
+filetype plugin indent on
+
+" settings
 set syntax=enable
 
 set title
@@ -7,7 +20,7 @@ set expandtab
 set shiftwidth=2
 set smartindent
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set nrformats-=octal
 set hidden
 set history=100
@@ -19,7 +32,6 @@ set ignorecase
 set incsearch
 set smartcase
 set laststatus=2
-set nocompatible
 set clipboard=unnamedplus
 set encoding=utf8
 

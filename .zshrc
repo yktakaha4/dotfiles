@@ -84,10 +84,20 @@ alias pbpaste='xclip -selection c -o'
 alias pbvim="pbpaste | pvim | pbcopy"
 
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
+alias viminstall="vim +PluginInstall +qall"
 
 # rcfiles and configs
+
+# git
 [[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
+
+# vim
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
+if [[ ! -e "$HOME/.vim/bundle/Vundle.vim" ]]
+then
+  ln -s "$HOME/.dotfiles/submodules/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
+  vim +PluginInstall +qall
+fi
 
 # envs
 

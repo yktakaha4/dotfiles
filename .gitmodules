@@ -19,3 +19,6 @@
 [submodule "submodules/direnv"]
 	path = submodules/direnv
 	url = https://github.com/direnv/direnv.git
+[submodule "submodules/Vundle.vim"]
+	path = submodules/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
