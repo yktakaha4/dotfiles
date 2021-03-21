@@ -17,7 +17,7 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{green}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats " %c%u%b"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':vcs_info:*' actionformats ' %c%u%b[%a]'
 
 function check_commits() {
   git rev-parse --show-toplevel --quiet >/dev/null 2>&1
@@ -25,12 +25,13 @@ function check_commits() {
   then
     UP="⇡"
     DOWN="⇣"
+    RIGHT="⇢"
     BRANCH="$(git symbolic-ref --short HEAD)"
     UNPUSHED_MARK="$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$UP"'"}')"
     UNPULLED_MARK="$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$DOWN"'"}')"
     if [[ "$UNPUSHED_MARK" = "" ]]
     then
-      UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$UP"'"}')"
+      UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$RIGHT"'"}')"
     fi
     PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
   else
