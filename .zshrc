@@ -20,7 +20,7 @@ zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 function check_commits() {
-  git rev-parse >/dev/null 2>&1
+  git rev-parse --show-toplevel --quiet >/dev/null 2>&1
   if [[ $? -eq 0 ]]
   then
     BRANCH="$(git symbolic-ref --short HEAD)"
