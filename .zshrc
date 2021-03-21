@@ -23,9 +23,15 @@ function check_commits() {
   git rev-parse --show-toplevel --quiet >/dev/null 2>&1
   if [[ $? -eq 0 ]]
   then
+    UP="⇡"
+    DOWN="⇣"
     BRANCH="$(git symbolic-ref --short HEAD)"
-    UNPULLED_MARK="$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "⇣"}')"
-    UNPUSHED_MARK="$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "⇡"}')"
+    UNPUSHED_MARK="$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$UP"'"}')"
+    UNPULLED_MARK="$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$DOWN"'"}')"
+    if [[ "$UNPUSHED_MARK" = "" ]]
+    then
+      UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$UP"'"}')"
+    fi
     PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
   else
     PROMPT_COMMITS_MARK=""
