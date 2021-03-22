@@ -73,6 +73,12 @@ then
   ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=012"
 fi
 
+# autosuggestions
+if [[ -f "$HOME/.dotfiles/submodules/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]
+then
+  source "$HOME/.dotfiles/submodules/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
