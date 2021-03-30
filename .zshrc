@@ -20,22 +20,25 @@ zstyle ':vcs_info:*' formats " %c%u%b"
 zstyle ':vcs_info:*' actionformats ' %c%u%b[%a]'
 
 function check_commits() {
+  PROMPT_COMMITS_MARK=""
+
   git rev-parse --show-toplevel --quiet >/dev/null 2>&1
   if [[ $? -eq 0 ]]
   then
-    UP="⇡"
-    DOWN="⇣"
-    RIGHT="⇢"
-    BRANCH="$(git symbolic-ref --short HEAD)"
-    UNPUSHED_MARK="$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$UP"'"}')"
-    UNPULLED_MARK="$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$DOWN"'"}')"
-    if [[ "$UNPUSHED_MARK" = "" ]]
+    BRANCH="$(git symbolic-ref --short HEAD 2>/dev/null)"
+    if [[ "$BRANCH" != "" ]]
     then
-      UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$RIGHT"'"}')"
+      UP="⇡"
+      DOWN="⇣"
+      RIGHT="⇢"
+      UNPUSHED_MARK="$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$UP"'"}')"
+      UNPULLED_MARK="$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | wc -l | awk '$1>0{print "'"$DOWN"'"}')"
+      if [[ "$UNPUSHED_MARK" = "" ]]
+      then
+        UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$RIGHT"'"}')"
+      fi
+      PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
     fi
-    PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
-  else
-    PROMPT_COMMITS_MARK=""
   fi
 }
 
