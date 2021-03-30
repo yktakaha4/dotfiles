@@ -114,6 +114,8 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias .='source'
 
+alias tf='terraform'
+
 which xclip > /dev/null || sudo apt-get install -y xclip
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection c -o'
