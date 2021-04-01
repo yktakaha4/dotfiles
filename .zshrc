@@ -119,6 +119,8 @@ alias .='source'
 
 alias tf='terraform'
 
+alias open='xdg-open'
+
 which xclip > /dev/null || sudo apt-get install -y xclip
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection c -o'
