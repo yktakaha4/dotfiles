@@ -37,7 +37,7 @@ function check_commits() {
       then
         UNPUSHED_MARK="$(git branch -r 2>/dev/null | grep "$BRANCH" | wc -l | awk '$1==0{print "'"$RIGHT"'"}')"
       fi
-      PROMPT_COMMITS_MARK="$UNPUSHED_MARK$UNPULLED_MARK"
+      PROMPT_COMMITS_MARK=" $UNPUSHED_MARK$UNPULLED_MARK"
     fi
   fi
 }
