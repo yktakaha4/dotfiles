@@ -21,6 +21,7 @@
   lv = "log --oneline --graph --pretty=fuller"
   ps = "push origin HEAD"
   pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
+  mgm = "!gmgm() { git merge \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gmgm"
   rbm = "!grbm() { git rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; grbm"
   subu = "submodule update --init --recursive"
 [credential "https://github.com"]
