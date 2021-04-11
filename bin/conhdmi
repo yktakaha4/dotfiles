@@ -10,8 +10,8 @@ function conhdmi() {
   fi
 
   xrandr \
-    --output eDP-1-1 --mode 1920x1080 --pos 0x1080 --rate 59.98 \
-    --output HDMI-0 --mode 3840x2160 --pos 1920x0 --rate 60.00
+    --output eDP-1-1 --mode 1920x1080 --pos 3840x1080 --rate 59.98 \
+    --output HDMI-0 --mode 3840x2160 --pos 0x0 --rate 60.00
 }
 
 function disconhdmi() {
