@@ -136,6 +136,7 @@ alias dcu='docker-compose up -d --remove-orphans'
 alias dcd='docker-compose down'
 alias dcl='docker-compose logs -f --tail=10'
 alias dcp='docker-compose ps'
+alias dcx='docker-compose exec'
 function dcul() {
   dcu $@ && dcl
 }
