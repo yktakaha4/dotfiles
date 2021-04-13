@@ -105,6 +105,9 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # alias
+alias vzrc='vim ~/.zshrc'
+alias .zrc='. ~/.zshrc'
+
 alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -la'
@@ -131,7 +134,7 @@ alias viminstall="vim +PluginInstall +qall"
 
 alias dcu='docker-compose up -d --remove-orphans'
 alias dcd='docker-compose down'
-alias dcl='docker-compose logs -f --tail 10'
+alias dcl='docker-compose logs -f --tail=10'
 alias dcp='docker-compose ps'
 function dcul() {
   dcu $@ && dcl
