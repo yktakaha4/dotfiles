@@ -177,6 +177,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT="true"
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
 
+# poetry
+which poetry > /dev/null && (
+  poetry config virtualenvs.in-project true
+)
+
 # nodenv
 export PATH="$HOME/.dotfiles/submodules/nodenv/bin:$PATH"
 eval "$(nodenv init -)"
