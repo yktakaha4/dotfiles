@@ -141,6 +141,8 @@ function dcul() {
   dcu $@ && dcl
 }
 
+alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
+
 # rcfiles and configs
 
 # git
