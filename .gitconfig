@@ -29,3 +29,5 @@
 [core]
   longpaths = true
   excludesfile = /home/tkhs/.gitignore_global
+[init]
+	defaultBranch = main
