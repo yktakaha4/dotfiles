@@ -42,6 +42,10 @@ function check_commits() {
   fi
 }
 
+function precmd() {
+  print ""
+}
+
 function precmd_prompt() {
   vcs_info
   check_commits
@@ -54,8 +58,7 @@ function preexec_prompt() {
 add-zsh-hook precmd precmd_prompt
 add-zsh-hook preexec preexec_prompt
 
-PROMPT='
-%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f%F{008}$vcs_info_msg_0_%F{cyan}$PROMPT_COMMITS_MARK%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
+PROMPT='%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f%F{008}$vcs_info_msg_0_%F{cyan}$PROMPT_COMMITS_MARK%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
