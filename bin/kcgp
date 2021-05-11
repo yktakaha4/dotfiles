@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+namespace="$1"
+
+set -eu
+
+kubectl get pods -n "$namespace"
