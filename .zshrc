@@ -200,6 +200,9 @@ export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
 export PATH="$HOME/.dotfiles/submodules/jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
 then
