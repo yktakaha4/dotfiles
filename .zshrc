@@ -146,6 +146,8 @@ function dcul() {
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 
+alias tailf="tail -f"
+
 # rcfiles and configs
 
 # git
