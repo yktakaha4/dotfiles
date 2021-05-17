@@ -25,9 +25,11 @@ prompts({
     .then((result) => {
         const { value } = result;
         if (value) {
-            console.log(value);
+            console.error(value);
+            process.exitCode = 0;
+        } else {
+            process.exitCode = 1;
         }
-        process.exitCode = 0;
     })
     .catch((e) => {
         console.error(e);

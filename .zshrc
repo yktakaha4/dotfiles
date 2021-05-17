@@ -191,6 +191,8 @@ which poetry > /dev/null && (
 export PATH="$HOME/.dotfiles/submodules/nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
+export NODETOOLS_PATH="$HOME/.dotfiles/scripts/nodetools"
+
 # gvm
 [[ -e "$HOME/.gvm" ]] || zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 source "$HOME/.gvm/scripts/gvm"

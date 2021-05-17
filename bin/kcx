@@ -6,12 +6,13 @@ command=${@:3}
 
 set -eu
 
-pod_name="$(kubectl get pods -n "$namespace" --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | awk '$1~"^'"$pod_name_prefix"'"' | head -1)"
+answer="$(mktemp)"
+kcsp "$namespace" "$pod_name_prefix" 2>"$answer"
+pod_name="$(cat "$answer")"
 
-if [[ "$pod_name" = "" ]]
-then
-  echo "unfound: $pod_name_prefix"
-  exit 1
+if [[ "$pod_name" = "" ]]; then
+    echo "unfound: $pod_name_prefix"
+    exit 1
 fi
 
 kubectl exec -n "$namespace" -it "$pod_name" -- ${command:-bash}

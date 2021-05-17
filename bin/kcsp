@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+namespace="$1"
+pod_name_prefix="$2"
+
+set -eu
+
+pod_names="$(kubectl get pods -n "$namespace" --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | awk '$1~"^'"$pod_name_prefix"'"' | paste -s)"
+node "$NODETOOLS_PATH/select.js" "Select pod" $(echo "$pod_names")
