@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+local -A opthash
+zparseopts -D -A opthash -- a
+
+opts=""
+if [[ -n "${opthash[(i)-a]}" ]]; then
+  opts="-a"
+fi
+
+namespace="$1"
+pod_name_prefix="$2"
+local_port="$3"
+dest_host_port="$4"
+pod_port="$(($RANDOM % 10000 + 40000))"
+
+answer="$(mktemp)"
+kcsp $opts "$namespace" "$pod_name_prefix" 2>"$answer"
+pod_name="$(cat "$answer")"
+
+if [[ "$pod_name" = "" ]]; then
+    echo "unfound: $pod_name_prefix"
+    exit 1
+fi
+
+echo "socat: localhost:$local_port <=> $pod_name:$pod_port <=> $dest_host_port"
+
+# 終了時にバックグラウンドのsocatをクローズ
+function cleanup {
+  kill "$exec_pid" >/dev/null
+}
+trap cleanup EXIT INT TERM
+
+# socatをバックグラウンドで実行
+command="socat -d -d tcp-listen:$pod_port,fork,reuseaddr tcp-connect:$dest_host_port"
+kubectl exec -n "$namespace" -it "$pod_name" -- $(echo $command) &
+exec_pid="$!"
+
+# ポートフォワード
+ports="$local_port:$pod_port"
+kubectl port-forward -n "$namespace" "$pod_name" "$ports"

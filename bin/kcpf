@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+local -A opthash
+zparseopts -D -A opthash -- a
+
+opts=""
+if [[ -n "${opthash[(i)-a]}" ]]; then
+  opts="-a"
+fi
+
+namespace="$1"
+pod_name_prefix="$2"
+ports="$3"
+
+answer="$(mktemp)"
+kcsp $opts "$namespace" "$pod_name_prefix" 2>"$answer"
+pod_name="$(cat "$answer")"
+
+if [[ "$pod_name" = "" ]]; then
+    echo "unfound: $pod_name_prefix"
+    exit 1
+fi
+
+kubectl port-forward -n "$namespace" "$pod_name" "$ports"
