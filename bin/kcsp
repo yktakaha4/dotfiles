@@ -2,12 +2,19 @@
 
 set -eu
 
+local -A opthash
+zparseopts -D -A opthash -- a
+
+opts=""
+if [[ -n "${opthash[(i)-a]}" ]]; then
+  opts="-a"
+fi
+
 namespace="$1"
 pod_name_prefix="$2"
-isauto=${3:+"-a"}
 
 pod_names="$(kubectl get pods -n "$namespace" --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | awk '$1~"^'"$pod_name_prefix"'"')"
 if [[ "$pod_names" = "" ]]; then
-    exit 1
+    exit 0
 fi
-node "$NODETOOLS_PATH/select.js" $isauto -m "Select pod" $(echo "$pod_names" | paste -s)
+node "$NODETOOLS_PATH/select.js" $opts -m "Select pod" $(echo "$pod_names" | paste -s)
