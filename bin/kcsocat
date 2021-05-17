@@ -25,7 +25,10 @@ if [[ "$pod_name" = "" ]]; then
     exit 1
 fi
 
-echo "socat: localhost:$local_port <=> $pod_name:$pod_port <=> $dest_host_port"
+echo "socat route is...
+localhost:$local_port
+ ↪ $pod_name:$pod_port
+  ↪ $dest_host_port" | cowsay -n
 
 # 終了時にバックグラウンドのsocatをクローズ
 function cleanup {
