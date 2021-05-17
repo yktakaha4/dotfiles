@@ -1,22 +1,13 @@
 #!/usr/bin/env zsh
 
-local -A opthash
-zparseopts -D -A opthash -- a
+set -eu
 
 namespace="$1"
 pod_name_prefix="$2"
-auto=""
-
-if [[ -n "${opthash[(i)-a]}" ]]; then
-  auto="1"
-fi
-
-set -eu
+isauto=${3:+"-a"}
 
 pod_names="$(kubectl get pods -n "$namespace" --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | awk '$1~"^'"$pod_name_prefix"'"')"
-
-if [[ -n "$auto" ]] && [[ $(echo "$pod_names" | wc -l) -eq 1 ]]; then
-    echo "$pod_names" | head -1
-else
-    node "$NODETOOLS_PATH/select.js" "Select pod" $(echo "$pod_names" | paste -s)
+if [[ "$pod_names" = "" ]]; then
+    exit 1
 fi
+node "$NODETOOLS_PATH/select.js" $isauto -m "Select pod" $(echo "$pod_names" | paste -s)

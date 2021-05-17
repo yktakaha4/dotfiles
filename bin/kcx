@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
+set -eu
+
 namespace="$1"
 pod_name_prefix="$2"
 command=${@:3}
-
-set -eu
 
 answer="$(mktemp)"
 kcsp "$namespace" "$pod_name_prefix" 2>"$answer"

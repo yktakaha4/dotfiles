@@ -1,37 +1,50 @@
-const prompts = require("prompts");
 const process = require("process");
-const { basename } = require("path");
+const prompts = require("prompts");
+const yargs = require("yargs");
 
-const { argv } = process;
+const { argv } = yargs
+    .option("message", {
+        alias: "m",
+    })
+    .option("auto", {
+        alias: "a",
+        boolean: true,
+    });
 
-if (process.argv.length < 4) {
-    console.error(`usage: ${basename(argv[1])} message [choice...]`);
+const message = argv["message"];
+const isAuto = !!argv["auto"];
+const choices = argv._;
+
+if (choices.length < 1) {
+    console.error(`usage: ${argv.$0} [-m message, -a auto] choice...`);
     process.exitCode = 2;
     return;
 }
 
-const message = argv[2];
-const choices = argv.slice(3);
-
-prompts({
-    type: "select",
-    name: "value",
-    message,
-    choices: choices.map((choice) => ({
-        title: choice,
-        value: choice,
-    })),
-})
-    .then((result) => {
-        const { value } = result;
-        if (value) {
-            console.error(value);
-            process.exitCode = 0;
-        } else {
-            process.exitCode = 1;
-        }
+if (isAuto) {
+    console.error(choices[0]);
+    process.exitCode = 0;
+} else {
+    prompts({
+        type: "select",
+        name: "value",
+        message,
+        choices: choices.map((choice) => ({
+            title: choice,
+            value: choice,
+        })),
     })
-    .catch((e) => {
-        console.error(e);
-        process.exitCode = 1;
-    });
+        .then((result) => {
+            const { value } = result;
+            if (value) {
+                console.error(value);
+                process.exitCode = 0;
+            } else {
+                process.exitCode = 1;
+            }
+        })
+        .catch((e) => {
+            console.error(e);
+            process.exitCode = 1;
+        });
+}
