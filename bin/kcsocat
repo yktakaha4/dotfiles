@@ -32,7 +32,7 @@ localhost:$local_port
 
 # 終了時にバックグラウンドのsocatをクローズ
 function cleanup {
-  kill "$exec_pid" >/dev/null
+  ps ho pid p "$exec_pid" >/dev/null && kill "$exec_pid" >/dev/null
 }
 trap cleanup EXIT INT TERM
 
