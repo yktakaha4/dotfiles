@@ -147,6 +147,7 @@ function dcul() {
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 
 alias tailf="tail -f"
+alias open="xdg-open"
 
 # rcfiles and configs
 
@@ -183,7 +184,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT="true"
 export PIPENV_VENV_IN_PROJECT="true"
 
 # poetry
-which poetry > /dev/null && (
+pyenv which poetry > /dev/null 2>&1 && (
   poetry config virtualenvs.in-project true
 )
 
