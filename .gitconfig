@@ -31,3 +31,5 @@
   excludesfile = /home/tkhs/.gitignore_global
 [init]
 	defaultBranch = main
+[ghq]
+	root = /home/tkhs/.gvm/pkgsets/go1.15.6/global/src

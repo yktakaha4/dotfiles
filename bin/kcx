@@ -1,26 +1,35 @@
 #!/usr/bin/env zsh
 
+which kubectl >/dev/null || exit 1
+
 set -eu
 
 local -A opthash
-zparseopts -D -A opthash -- a
+zparseopts -D -A opthash -- a n: c:
 
-opts=""
+kcsp_opts=""
+kubectl_opts=""
+condition=""
+
 if [[ -n "${opthash[(i)-a]}" ]]; then
-  opts="-a"
+  kcsp_opts="$kcsp_opts -a"
 fi
 
-namespace="$1"
-pod_name_prefix="$2"
-command=${@:3}
-
-answer="$(mktemp)"
-kcsp $opts "$namespace" "$pod_name_prefix" 2>"$answer"
-pod_name="$(cat "$answer")"
-
-if [[ "$pod_name" = "" ]]; then
-    echo "unfound: $pod_name_prefix"
-    exit 1
+if [[ -n "${opthash[(i)-n]}" ]]; then
+  ns="${opthash[-n]}"
+  kcsp_opts="$kcsp_opts -n $ns"
+  kubectl_opts="$kubectl_opts -n $ns"
 fi
 
-kubectl exec -n "$namespace" -it "$pod_name" -- ${command:-bash}
+if [[ -n "${opthash[(i)-c]}" ]]; then
+  condition="${opthash[-c]}"
+fi
+
+command=${@:1}
+
+pod_name="$(kcsp $(echo "$kcsp_opts") "$condition")"
+if [[ -z "$pod_name" ]]; then
+  exit 1
+fi
+
+kubectl exec $(echo "$kubectl_opts") -it "$pod_name" -- ${command:-bash}

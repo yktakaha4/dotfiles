@@ -1,20 +1,40 @@
 #!/usr/bin/env zsh
 
+which kubectl peco >/dev/null || exit 1
+
 set -eu
 
 local -A opthash
-zparseopts -D -A opthash -- a
+zparseopts -D -A opthash -- a n:
 
-opts=""
+is_auto=""
+kubectl_opts=""
+
 if [[ -n "${opthash[(i)-a]}" ]]; then
-  opts="-a"
+  is_auto="1"
 fi
 
-namespace="$1"
-pod_name_prefix="$2"
-
-pod_names="$(kubectl get pods -n "$namespace" --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | awk '$1~"^'"$pod_name_prefix"'"')"
-if [[ "$pod_names" = "" ]]; then
-    exit 0
+if [[ -n "${opthash[(i)-n]}" ]]; then
+  kubectl_opts="$kubectl_opts -n ${opthash[-n]}"
 fi
-node "$NODETOOLS_PATH/select.js" $opts -m "Select pod" $(echo "$pod_names" | paste -s)
+
+condition="${1:-}"
+temp="$(mktemp)"
+
+kubectl get pods $(echo "$kubectl_opts") |
+tail -n +2 |
+if [[ -z "$condition" ]]; then
+  cat
+else
+  grep -e "$condition"
+fi > "$temp"
+
+temp_cnt="$(cat "$temp" | wc -l)"
+
+if [[ "$temp_cnt" -eq "0" ]]; then
+  exit 2
+elif [[ "$is_auto" ]]; then
+  head -1 "$temp" | awk '{print $1}'
+else
+  peco "$temp" | awk '{print $1}'
+fi
