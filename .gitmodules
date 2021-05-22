@@ -25,3 +25,6 @@
 [submodule "submodules/zsh-autosuggestions"]
 	path = submodules/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "submodules/wakatime-zsh-plugin"]
+	path = submodules/wakatime-zsh-plugin
+	url = https://github.com/sobolevn/wakatime-zsh-plugin.git
