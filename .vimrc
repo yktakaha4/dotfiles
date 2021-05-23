@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'fatih/vim-go'
 " うまく動かなかった
 " Plugin 'fuenor/im_control.vim'
 
