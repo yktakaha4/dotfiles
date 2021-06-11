@@ -5,7 +5,7 @@
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
   i = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
   a = "add ."
-  b = "branch"
+  b = "branch -vv"
   co = "commit -m"
   coa = "commit --amend"
   ch = "checkout"
