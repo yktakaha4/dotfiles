@@ -1,2 +1,4 @@
+.envrc
+
 *.swp
 zsh.d/ignore-*
