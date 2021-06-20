@@ -123,6 +123,8 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias .='source'
 
+alias lgrep='grep --line-buffered'
+
 alias tf='terraform'
 
 alias open='xdg-open'
