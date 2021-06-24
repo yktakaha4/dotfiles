@@ -182,6 +182,13 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
+# rbenv
+eval "$(rbenv init -)"
+[[ -e "$HOME/.rbenv/plugins/ruby-build" ]] || (
+  mkdir -p "$HOME/.rbenv/plugins/ruby-build"
+  git clone "https://github.com/rbenv/ruby-build.git" "$HOME/.rbenv/plugins/ruby-build"
+)
+
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
 
