@@ -147,6 +147,7 @@ function dcul() {
 }
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
+alias makefile="cat $HOME/.dotfiles/.Makefile"
 
 alias tailf="tail -f"
 alias open="xdg-open"
