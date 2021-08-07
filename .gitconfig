@@ -25,6 +25,8 @@
   mgm = "!gmgm() { git merge \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gmgm"
   rbm = "!grbm() { git rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; grbm"
   subu = "submodule update --init --recursive"
+  pr = "!pr() {(gh pr create -w &) >/dev/null && echo 'open new pull request...';}; pr"
+  is = "!is() {(gh issue create -w &) >/dev/null && echo 'open new issue...';}; is"
 [credential "https://github.com"]
   helper = !gh auth git-credential
 [core]
