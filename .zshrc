@@ -151,6 +151,9 @@ alias makefile="cat $HOME/.dotfiles/.Makefile"
 
 alias tailf="tail -f"
 alias open="xdg-open"
+alias hdiff="$HOME/.dotfiles/submodules/diff2html-cli/bin/diff2html -i stdin"
+
+alias ssh="ssh -o ServerAliveInterval=60"
 
 # rcfiles and configs
 
@@ -169,9 +172,19 @@ fi
 [[ -f "$HOME/.xmodmap" ]] || ln -s "$HOME/.dotfiles/.xmodmap" "$HOME/.xmodmap"
 [[ -f "$HOME/.xinputrc" ]] || ln -s "$HOME/.dotfiles/.xinputrc" "$HOME/.xinputrc"
 
+# diff
+[[ -e "$HOME/.dotfiles/submodules/diff2html-cli/node_modules" ]] || (
+  cd "$HOME/.dotfiles/submodules/diff2html-cli"
+  yarn build
+)
+
 # envs
 
 which curl >/dev/null || sudo apt-get install -y curl
+which tmux >/dev/null || sudo apt-get install -y tmux
+
+# tmux
+[[ -f "$HOME/.tmux.conf" ]] || ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf"
 
 # direnv
 which direnv >/dev/null || bash "$HOME/.dotfiles/submodules/direnv/install.sh"
