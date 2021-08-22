@@ -1,6 +1,7 @@
 # options
 
 setopt histignorealldups sharehistory prompt_subst ignoreeof auto_cd auto_pushd pushd_ignore_dups no_flow_control
+bindkey -e
 
 # env
 export PATH="$HOME/.dotfiles/bin:$PATH"
