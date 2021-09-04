@@ -236,6 +236,9 @@ eval "$(jenv init -)"
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+# kubectl
+source <(kubectl completion zsh)
+
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
 then
