@@ -253,6 +253,8 @@ function kube_ps1_cluster_function() {
 }
 export KUBE_PS1_CLUSTER_FUNCTION="kube_ps1_cluster_function"
 
+which stern >/dev/null 2>&1 && source <(stern --completion=zsh)
+
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
 then
