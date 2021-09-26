@@ -59,7 +59,7 @@ function preexec_prompt() {
 add-zsh-hook precmd precmd_prompt
 add-zsh-hook preexec preexec_prompt
 
-PROMPT='%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f%F{008}$vcs_info_msg_0_%F{cyan}$PROMPT_COMMITS_MARK%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
+PROMPT='%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f $(kube_ps1)%F{008}$vcs_info_msg_0_%F{cyan}$PROMPT_COMMITS_MARK%f%(?..%F{red} (%?%))%f %F{008}$PROMPT_EXEC_TIME%f %F{yellow}%*%f
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
@@ -146,6 +146,8 @@ alias dcx='docker-compose exec'
 function dcul() {
   dcu $@ && dcl
 }
+
+alias k='kubectl'
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
@@ -238,6 +240,18 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # kubectl
 source <(kubectl completion zsh)
+
+source "$HOME/.dotfiles/submodules/kube-ps1/kube-ps1.sh"
+export KUBE_PS1_PREFIX=""
+export KUBE_PS1_SUFFIX=""
+export KUBE_PS1_SYMBOL_PADDING=false
+export KUBE_PS1_SEPARATOR=":"
+export KUBE_PS1_SYMBOL_COLOR="cyan"
+export KUBE_PS1_CTX_COLOR="cyan"
+function kube_ps1_cluster_function() {
+  echo "$1" | awk -F'/' '{print $NF}'
+}
+export KUBE_PS1_CLUSTER_FUNCTION="kube_ps1_cluster_function"
 
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
