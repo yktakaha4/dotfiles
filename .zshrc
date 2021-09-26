@@ -148,6 +148,8 @@ function dcul() {
 }
 
 alias k='kubectl'
+alias kgpo='kubectl get po -o wide'
+alias kgno='kubectl get no -o wide'
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
