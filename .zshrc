@@ -165,6 +165,7 @@ alias ssh="ssh -o ServerAliveInterval=60"
 
 # git
 [[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
+[[ -e "$HOME/.gitignore_global" ]] || ln -s "$HOME/.dotfiles/.gitignore_global" "$HOME/.gitignore_global"
 
 # vim
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
