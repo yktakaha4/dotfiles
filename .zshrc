@@ -161,6 +161,8 @@ alias hdiff="$HOME/.dotfiles/submodules/diff2html-cli/bin/diff2html -i stdin"
 
 alias ssh="ssh -o ServerAliveInterval=60"
 
+alias qcsv='q -b -d, -HO'
+
 # rcfiles and configs
 
 # git
