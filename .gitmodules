@@ -34,3 +34,6 @@
 [submodule "submodules/kube-ps1"]
 	path = submodules/kube-ps1
 	url = git@github.com:jonmosco/kube-ps1.git
+[submodule "submodules/v4l2loopback"]
+	path = submodules/v4l2loopback
+	url = git@github.com:umlaeute/v4l2loopback.git
