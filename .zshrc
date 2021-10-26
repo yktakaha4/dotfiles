@@ -3,6 +3,9 @@
 setopt histignorealldups sharehistory prompt_subst ignoreeof auto_cd auto_pushd pushd_ignore_dups no_flow_control
 bindkey -e
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 # env
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export EDITOR="vim"
