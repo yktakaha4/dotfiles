@@ -166,6 +166,8 @@ alias ssh="ssh -o ServerAliveInterval=60"
 
 alias qcsv='q -b -d, -HO'
 
+alias iam='aws sts get-caller-identity --query Arn --output text'
+
 # rcfiles and configs
 
 # git
@@ -266,6 +268,10 @@ function kube_ps1_cluster_function() {
 export KUBE_PS1_CLUSTER_FUNCTION="kube_ps1_cluster_function"
 
 which stern >/dev/null 2>&1 && source <(stern --completion=zsh)
+
+# flyctl
+export FLYCTL_INSTALL="/home/tkhs/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
