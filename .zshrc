@@ -154,6 +154,8 @@ function dcul() {
 alias k='kubectl'
 alias kgpo='kubectl get po -o wide'
 alias kgno='kubectl get no -o wide'
+alias k9s='k9s --readonly'
+alias k9sw='\k9s'
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
@@ -251,6 +253,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # kubectl
 source <(kubectl completion zsh)
+
+# heml
+source <(helm completion zsh)
 
 # https://github.com/sh0rez/kubectl-neat-diff
 export KUBECTL_EXTERNAL_DIFF=kubectl-neat-diff
