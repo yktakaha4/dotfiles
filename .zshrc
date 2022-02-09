@@ -130,8 +130,11 @@ alias .='source'
 alias lgrep='grep --line-buffered'
 
 alias tf='terraform'
+alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s+(\+|-|~|-/\+)"'
 
 alias open='xdg-open'
+
+alias curlj='curl -s -XPOST -H "accept:application/json" -H"content-type:application/json"'
 
 which xclip > /dev/null || sudo apt-get install -y xclip
 alias pbcopy='xclip -selection c'
