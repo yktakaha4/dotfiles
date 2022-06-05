@@ -293,3 +293,7 @@ while read f
 do
   source $f
 done
+
+if [ -e /home/tkhs/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tkhs/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export PATH="$PATH:/opt/apache-maven-3.6.3/bin:/opt/gradle-6.7/bin"
