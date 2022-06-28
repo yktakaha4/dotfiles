@@ -155,6 +155,7 @@ function dcul() {
 }
 
 alias k='kubectl'
+alias kk='kubectl kustomize'
 alias kgpo='kubectl get po -o wide'
 alias kgno='kubectl get no -o wide'
 alias k9s='k9s --readonly'
