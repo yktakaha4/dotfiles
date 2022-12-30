@@ -130,7 +130,7 @@ alias .='source'
 alias lgrep='grep --line-buffered'
 
 alias tf='terraform'
-alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s+(\+|-|~|-/\+)"'
+alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s{,2}(\+|-|~|-/\+) |^\s<=|^Plan"'
 
 alias open='xdg-open'
 
@@ -144,6 +144,9 @@ alias pbvim="pbpaste | pvim | pbcopy"
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 alias viminstall="vim +PluginInstall +qall"
 
+alias shutdown='systemctl poweroff -i'
+alias reboot='systemctl reboot -i'
+
 alias dcu='docker-compose up -d --remove-orphans'
 alias dcd='docker-compose down'
 alias dcl='docker-compose logs -f --tail=10'
@@ -155,11 +158,13 @@ function dcul() {
 }
 
 alias k='kubectl'
+alias kl='kubectl logs --max-log-requests 10 --tail=10000000 --timestamps --ignore-errors --prefix'
 alias kk='kubectl kustomize'
 alias kgpo='kubectl get po -o wide'
 alias kgno='kubectl get no -o wide'
 alias k9s='k9s --readonly'
 alias k9sw='\k9s'
+alias mk='minikube kubectl --'
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
@@ -228,7 +233,7 @@ export PIPENV_VENV_IN_PROJECT="true"
 
 # poetry
 pyenv which poetry > /dev/null 2>&1 && (
-  poetry config virtualenvs.in-project true
+  # poetry config virtualenvs.in-project true
 )
 
 # nodenv
