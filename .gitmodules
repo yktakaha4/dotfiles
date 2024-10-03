@@ -28,9 +28,6 @@
 [submodule "submodules/wakatime-zsh-plugin"]
 	path = submodules/wakatime-zsh-plugin
 	url = https://github.com/sobolevn/wakatime-zsh-plugin.git
-[submodule "submodules/diff2html-cli"]
-	path = submodules/diff2html-cli
-	url = https://github.com/rtfpessoa/diff2html-cli.git
 [submodule "submodules/kube-ps1"]
 	path = submodules/kube-ps1
 	url = git@github.com:jonmosco/kube-ps1.git

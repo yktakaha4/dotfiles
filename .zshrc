@@ -182,7 +182,6 @@ alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
 
 alias tailf="tail -f"
-alias hdiff="$HOME/.dotfiles/submodules/diff2html-cli/bin/diff2html -i stdin"
 
 alias ssh="ssh -o ServerAliveInterval=60"
 
