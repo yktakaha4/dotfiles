@@ -144,7 +144,7 @@ alias lgrep='grep --line-buffered'
 alias tf='terraform'
 alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s{,2}(\+|-|~|-/\+) |^\s<=|^Plan"'
 
-alias xdg-open="$BROWSER"
+alias open="$BROWSER"
 
 alias curlj='curl -s -XPOST -H "accept:application/json" -H"content-type:application/json"'
 
@@ -182,7 +182,6 @@ alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
 
 alias tailf="tail -f"
-alias open="xdg-open"
 alias hdiff="$HOME/.dotfiles/submodules/diff2html-cli/bin/diff2html -i stdin"
 
 alias ssh="ssh -o ServerAliveInterval=60"
