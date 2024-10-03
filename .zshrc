@@ -10,6 +10,15 @@ bindkey "^[[1;5D" backward-word
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export EDITOR="vim"
 export PAGER="less"
+export BROWSER="wslview"
+
+# wslu
+which wslview >/dev/null || (
+  # https://wslutiliti.es/wslu/install.html
+  sudo add-apt-repository ppa:wslutilities/wslu
+  sudo apt update
+  sudo apt install wslu
+)
 
 # local/bin
 mkdir -p "$HOME/.local/bin"
@@ -135,7 +144,7 @@ alias lgrep='grep --line-buffered'
 alias tf='terraform'
 alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s{,2}(\+|-|~|-/\+) |^\s<=|^Plan"'
 
-alias open='xdg-open'
+alias xdg-open="$BROWSER"
 
 alias curlj='curl -s -XPOST -H "accept:application/json" -H"content-type:application/json"'
 
