@@ -40,3 +40,9 @@
 [submodule "submodules/kubectl-neat-diff"]
 	path = submodules/kubectl-neat-diff
 	url = git@github.com:sh0rez/kubectl-neat-diff.git
+[submodule "submodules/goenv"]
+	path = submodules/goenv
+	url = https://github.com/go-nv/goenv.git
+[submodule "submodules/rbenv"]
+	path = submodules/rbenv
+	url = https://github.com/rbenv/rbenv.git

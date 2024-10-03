@@ -189,6 +189,7 @@ alias iam='aws sts get-caller-identity --query Arn --output text'
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
 if [[ ! -e "$HOME/.vim/bundle/Vundle.vim" ]]
 then
+  mkdir -p "$HOME/.vim/bundle/"
   ln -s "$HOME/.dotfiles/submodules/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
   vim +PluginInstall +qall
 fi
@@ -197,14 +198,7 @@ fi
 [[ -f "$HOME/.xmodmap" ]] || ln -s "$HOME/.dotfiles/.xmodmap" "$HOME/.xmodmap"
 [[ -f "$HOME/.xinputrc" ]] || ln -s "$HOME/.dotfiles/.xinputrc" "$HOME/.xinputrc"
 
-# diff
-[[ -e "$HOME/.dotfiles/submodules/diff2html-cli/node_modules" ]] || (
-  cd "$HOME/.dotfiles/submodules/diff2html-cli"
-  yarn build
-)
-
 # envs
-
 which curl >/dev/null || sudo apt-get install -y curl
 which tmux >/dev/null || sudo apt-get install -y tmux
 
@@ -222,7 +216,7 @@ eval "$(pyenv init -)"
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 # rbenv
-eval "$(rbenv init -)"
+eval "$($HOME/.dotfiles/submodules/rbenv/bin/rbenv init -)"
 [[ -e "$HOME/.rbenv/plugins/ruby-build" ]] || (
   mkdir -p "$HOME/.rbenv/plugins/ruby-build"
   git clone "https://github.com/rbenv/ruby-build.git" "$HOME/.rbenv/plugins/ruby-build"
@@ -243,12 +237,14 @@ eval "$(nodenv init -)"
 export NODETOOLS_PATH="$HOME/.dotfiles/scripts/nodetools"
 [[ -e "$NODETOOLS_PATH/node_modules" ]] || (
   cd "$NODETOOLS_PATH"
-  npm ci >/dev/null
+  which npm >/dev/null && (
+    npm ci >/dev/null
+  )
 )
 
-# gvm
-[[ -e "$HOME/.gvm" ]] || zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-source "$HOME/.gvm/scripts/gvm"
+# goenv
+export GOENV_ROOT="$HOME/.dotfiles/submodules/goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 
 # tfenv
 export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
@@ -261,10 +257,10 @@ eval "$(jenv init -)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # kubectl
-source <(kubectl completion zsh)
+which kubectl >/dev/null && source <(kubectl completion zsh)
 
 # heml
-source <(helm completion zsh)
+which helm >/dev/null && source <(helm completion zsh)
 
 # https://github.com/sh0rez/kubectl-neat-diff
 export KUBECTL_EXTERNAL_DIFF=kubectl-neat-diff
