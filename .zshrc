@@ -256,6 +256,7 @@ fi
 # goenv
 export GOENV_ROOT="$HOME/.dotfiles/submodules/goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
 
 # tfenv
 export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
