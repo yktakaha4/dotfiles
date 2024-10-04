@@ -205,6 +205,7 @@ which tmux >/dev/null || sudo apt-get install -y tmux
 which bc >/dev/null || sudo apt-get install -y bc
 which jq >/dev/null || sudo apt-get install -y jq
 which make >/dev/null || sudo apt-get install -y make gcc
+which unzip >/dev/null || sudo apt-get install -y unzip
 
 # tmux
 [[ -f "$HOME/.tmux.conf" ]] || ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf"
