@@ -209,6 +209,15 @@ which make >/dev/null || sudo apt-get install -y make gcc
 # tmux
 [[ -f "$HOME/.tmux.conf" ]] || ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf"
 
+# asdf
+if [ ! -d "$HOME/.asdf" ]
+then
+  ln -s "$HOME/.dotfiles/submodules/asdf" "$HOME/.asdf"
+fi
+source "$HOME/.asdf/asdf.sh"
+
+
+
 # direnv
 which direnv >/dev/null || bash "$HOME/.dotfiles/submodules/direnv/install.sh"
 eval "$(direnv hook zsh)"
