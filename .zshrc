@@ -216,7 +216,12 @@ then
 fi
 source "$HOME/.asdf/asdf.sh"
 
-
+# envs
+function pullenvs() {
+  git -C "$(nodenv root)/plugins/node-build" pull
+  git -C "$HOME/.rbenv/plugins/ruby-build" pull
+  pyenv update
+}
 
 # direnv
 which direnv >/dev/null || bash "$HOME/.dotfiles/submodules/direnv/install.sh"
@@ -227,6 +232,9 @@ export PYENV_ROOT="$HOME/.dotfiles/submodules/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
+[[ -e "$(pyenv root)/plugins/pyenv-update" ]] || (
+  git clone "https://github.com/pyenv/pyenv-update.git" $(pyenv root)/plugins/pyenv-update
+)
 
 # rbenv
 eval "$($HOME/.dotfiles/submodules/rbenv/bin/rbenv init -)"
@@ -238,6 +246,11 @@ eval "$($HOME/.dotfiles/submodules/rbenv/bin/rbenv init -)"
 # nodenv
 export PATH="$HOME/.dotfiles/submodules/nodenv/bin:$PATH"
 eval "$(nodenv init -)"
+
+if [ ! -d "$(nodenv root)/plugins/node-build" ]
+then
+  git clone "https://github.com/nodenv/node-build.git" "$(nodenv root)/plugins/node-build"
+fi
 
 # goenv
 export GOENV_ROOT="$HOME/.dotfiles/submodules/goenv"
