@@ -266,14 +266,30 @@ which gh >/dev/null || (
 	&& sudo apt install gh -y
 )
 
-# krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 # kubectl
 which kubectl >/dev/null && source <(kubectl completion zsh)
 
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+which kubectl-krew >/dev/null || (
+  # https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+
 # helm
-which helm >/dev/null && source <(helm completion zsh)
+which helm >/dev/null || (
+  tmpdir="$(mktemp -d)"
+  curl -fsSL -o "$tmpdir/get_helm.sh" "https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
+  chmod 700 "$tmpdir/get_helm.sh"
+  "$tmpdir/get_helm.sh"
+)
+source <(helm completion zsh)
 
 # https://github.com/sh0rez/kubectl-neat-diff
 which kubectl-neat-diff >/dev/null || (
