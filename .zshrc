@@ -11,6 +11,9 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 export EDITOR="vim"
 export PAGER="less"
 
+# local/bin
+mkdir -p "$HOME/.local/bin"
+
 # Set up the prompt
 
 autoload -Uz promptinit && promptinit
@@ -66,8 +69,8 @@ PROMPT='%F{blue}%~%f%F{008}${VIRTUAL_ENV+" ($(basename "$VIRTUAL_ENV"))"}%f $(ku
 %(?.%F{magenta}.%F{red})$%f '
 
 # Keep lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE="10000"
-SAVEHIST="10000"
+HISTSIZE="100000"
+SAVEHIST="100000"
 HISTFILE="$HOME/.zsh_history"
 
 # syntax-highliting
@@ -132,46 +135,44 @@ alias lgrep='grep --line-buffered'
 alias tf='terraform'
 alias tfp='terraform plan -no-color | grep --line-buffered -E "^\S+|^\s{,2}(\+|-|~|-/\+) |^\s<=|^Plan"'
 
-alias open='xdg-open'
-
-alias curlj='curl -s -XPOST -H "accept:application/json" -H"content-type:application/json"'
-
-which xclip > /dev/null || sudo apt-get install -y xclip
-alias pbcopy='xclip -selection c'
-alias pbpaste='xclip -selection c -o'
 alias pbvim="pbpaste | pvim | pbcopy"
 
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 alias viminstall="vim +PluginInstall +qall"
 
-alias shutdown='systemctl poweroff -i'
-alias reboot='systemctl reboot -i'
-
-alias dcu='docker-compose up -d --remove-orphans'
-alias dcd='docker-compose down'
-alias dcl='docker-compose logs -f --tail=10'
-alias dcp='docker-compose ps'
-alias dcx='docker-compose exec'
-alias dcr='docker-compose restart'
+alias dcu='docker compose up -d --remove-orphans'
+alias dcd='docker compose down'
+alias dcl='docker compose logs -f --tail=10'
+alias dcp='docker compose ps'
+alias dcx='docker compose exec'
+alias dcr='docker compose restart'
+alias docker-compose='docker compose'
 function dcul() {
   dcu $@ && dcl
 }
 
 alias k='kubectl'
 alias kl='kubectl logs --max-log-requests 10 --tail=10000000 --timestamps --ignore-errors --prefix'
-alias kk='kubectl kustomize'
+alias km='kustomize'
+alias kmd='kustomize build | kubectl diff -f -'
 alias kgpo='kubectl get po -o wide'
 alias kgno='kubectl get no -o wide'
 alias k9s='k9s --readonly'
 alias k9sw='\k9s'
 alias mk='minikube kubectl --'
+alias kgnos='kubectl get nodes -o "custom-columns=NAME:.metadata.name,CREATED:.metadata.creationTimestamp,TYPE:.metadata.labels.type,AVAIL_ZONE:.metadata.labels.topology\.kubernetes\.io/zone,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io/instance-type,CPU:.status.capacity.cpu,MEMORY:.status.capacity.memory,STORAGE:.status.capacity.ephemeral-storage,PODS:status.capacity.pods,INSTANCE_ID:spec.providerID" | sed "s@aws://.\+/@@g"'
+alias krno='kubectl resource-capacity --util --pod-count'
+alias krpo='kubectl resource-capacity --util --pod-count --pods'
+alias krco='kubectl resource-capacity --util --pod-count --containers'
+
+function kgpobyno() {
+  kubectl get po --field-selector "spec.nodeName=$1" ${@:2}
+}
 
 alias editorconfig="cat $HOME/.dotfiles/.editorconfig"
 alias makefile="cat $HOME/.dotfiles/.Makefile"
 
 alias tailf="tail -f"
-alias open="xdg-open"
-alias hdiff="$HOME/.dotfiles/submodules/diff2html-cli/bin/diff2html -i stdin"
 
 alias ssh="ssh -o ServerAliveInterval=60"
 
@@ -189,6 +190,7 @@ alias iam='aws sts get-caller-identity --query Arn --output text'
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
 if [[ ! -e "$HOME/.vim/bundle/Vundle.vim" ]]
 then
+  mkdir -p "$HOME/.vim/bundle/"
   ln -s "$HOME/.dotfiles/submodules/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
   vim +PluginInstall +qall
 fi
@@ -197,19 +199,24 @@ fi
 [[ -f "$HOME/.xmodmap" ]] || ln -s "$HOME/.dotfiles/.xmodmap" "$HOME/.xmodmap"
 [[ -f "$HOME/.xinputrc" ]] || ln -s "$HOME/.dotfiles/.xinputrc" "$HOME/.xinputrc"
 
-# diff
-[[ -e "$HOME/.dotfiles/submodules/diff2html-cli/node_modules" ]] || (
-  cd "$HOME/.dotfiles/submodules/diff2html-cli"
-  yarn build
-)
-
 # envs
-
 which curl >/dev/null || sudo apt-get install -y curl
 which tmux >/dev/null || sudo apt-get install -y tmux
+which bc >/dev/null || sudo apt-get install -y bc
+which jq >/dev/null || sudo apt-get install -y jq
+which make >/dev/null || sudo apt-get install -y make gcc
 
 # tmux
 [[ -f "$HOME/.tmux.conf" ]] || ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf"
+
+# asdf
+if [ ! -d "$HOME/.asdf" ]
+then
+  ln -s "$HOME/.dotfiles/submodules/asdf" "$HOME/.asdf"
+fi
+source "$HOME/.asdf/asdf.sh"
+
+
 
 # direnv
 which direnv >/dev/null || bash "$HOME/.dotfiles/submodules/direnv/install.sh"
@@ -222,33 +229,19 @@ eval "$(pyenv init -)"
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 # rbenv
-eval "$(rbenv init -)"
+eval "$($HOME/.dotfiles/submodules/rbenv/bin/rbenv init -)"
 [[ -e "$HOME/.rbenv/plugins/ruby-build" ]] || (
   mkdir -p "$HOME/.rbenv/plugins/ruby-build"
   git clone "https://github.com/rbenv/ruby-build.git" "$HOME/.rbenv/plugins/ruby-build"
-)
-
-# pipenv
-export PIPENV_VENV_IN_PROJECT="true"
-
-# poetry
-pyenv which poetry > /dev/null 2>&1 && (
-  # poetry config virtualenvs.in-project true
 )
 
 # nodenv
 export PATH="$HOME/.dotfiles/submodules/nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
-export NODETOOLS_PATH="$HOME/.dotfiles/scripts/nodetools"
-[[ -e "$NODETOOLS_PATH/node_modules" ]] || (
-  cd "$NODETOOLS_PATH"
-  npm ci >/dev/null
-)
-
-# gvm
-[[ -e "$HOME/.gvm" ]] || zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-source "$HOME/.gvm/scripts/gvm"
+# goenv
+export GOENV_ROOT="$HOME/.dotfiles/submodules/goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 
 # tfenv
 export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
@@ -257,16 +250,37 @@ export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
 export PATH="$HOME/.dotfiles/submodules/jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# rust
+[[ -e "$HOME/.cargo" ]] || curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+source "$HOME/.cargo/env"
+
+# gh
+which gh >/dev/null || (
+  # https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt
+  (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+	&& wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+)
+
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # kubectl
-source <(kubectl completion zsh)
+which kubectl >/dev/null && source <(kubectl completion zsh)
 
-# heml
-source <(helm completion zsh)
+# helm
+which helm >/dev/null && source <(helm completion zsh)
 
 # https://github.com/sh0rez/kubectl-neat-diff
+which kubectl-neat-diff >/dev/null || (
+  cd "$HOME/.dotfiles/submodules/kubectl-neat-diff"
+  which go >/dev/null && make install
+)
+
 export KUBECTL_EXTERNAL_DIFF=kubectl-neat-diff
 
 source "$HOME/.dotfiles/submodules/kube-ps1/kube-ps1.sh"
@@ -283,10 +297,6 @@ export KUBE_PS1_CLUSTER_FUNCTION="kube_ps1_cluster_function"
 
 which stern >/dev/null 2>&1 && source <(stern --completion=zsh)
 
-# flyctl
-export FLYCTL_INSTALL="/home/tkhs/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 # compile
 if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
 then
@@ -299,7 +309,5 @@ while read f
 do
   source $f
 done
-
-if [ -e /home/tkhs/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tkhs/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 export PATH="$PATH:/opt/apache-maven-3.6.3/bin:/opt/gradle-6.7/bin"

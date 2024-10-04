@@ -28,9 +28,6 @@
 [submodule "submodules/wakatime-zsh-plugin"]
 	path = submodules/wakatime-zsh-plugin
 	url = https://github.com/sobolevn/wakatime-zsh-plugin.git
-[submodule "submodules/diff2html-cli"]
-	path = submodules/diff2html-cli
-	url = https://github.com/rtfpessoa/diff2html-cli.git
 [submodule "submodules/kube-ps1"]
 	path = submodules/kube-ps1
 	url = git@github.com:jonmosco/kube-ps1.git
@@ -40,3 +37,12 @@
 [submodule "submodules/kubectl-neat-diff"]
 	path = submodules/kubectl-neat-diff
 	url = git@github.com:sh0rez/kubectl-neat-diff.git
+[submodule "submodules/goenv"]
+	path = submodules/goenv
+	url = https://github.com/go-nv/goenv.git
+[submodule "submodules/rbenv"]
+	path = submodules/rbenv
+	url = https://github.com/rbenv/rbenv.git
+[submodule "submodules/asdf"]
+	path = submodules/asdf
+	url = https://github.com/asdf-vm/asdf.git
