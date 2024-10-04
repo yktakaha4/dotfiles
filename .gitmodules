@@ -43,3 +43,6 @@
 [submodule "submodules/rbenv"]
 	path = submodules/rbenv
 	url = https://github.com/rbenv/rbenv.git
+[submodule "submodules/asdf"]
+	path = submodules/asdf
+	url = https://github.com/asdf-vm/asdf.git
