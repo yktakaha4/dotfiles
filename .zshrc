@@ -218,9 +218,10 @@ source "$HOME/.asdf/asdf.sh"
 
 # envs
 function pullenvs() {
+  pyenv update
   git -C "$(nodenv root)/plugins/node-build" pull
   git -C "$HOME/.rbenv/plugins/ruby-build" pull
-  pyenv update
+  git -C "$HOME/.dotfiles/submodules/goenv" pull
 }
 
 # direnv
