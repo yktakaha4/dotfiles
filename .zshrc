@@ -266,6 +266,12 @@ export PATH="$HOME/.dotfiles/submodules/tfenv/bin:$PATH"
 export PATH="$HOME/.dotfiles/submodules/jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+which java >/dev/null || (
+  sudo apt update
+  sudo apt install -y openjdk-17-jdk
+  jenv add "$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")"
+)
+
 # rust
 [[ -e "$HOME/.cargo" ]] || curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 source "$HOME/.cargo/env"
