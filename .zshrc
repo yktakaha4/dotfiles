@@ -329,6 +329,13 @@ which kustomize >/dev/null || (
   curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 )
 
+# minikube
+which minikube >/dev/null || (
+  cd "$(mktemp -d)"
+  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+)
+
 # https://github.com/sh0rez/kubectl-neat-diff
 which kubectl-neat-diff >/dev/null || (
   cd "$HOME/.dotfiles/submodules/kubectl-neat-diff"
