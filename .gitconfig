@@ -5,7 +5,7 @@
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
   a = "add ."
   b = "branch -vv"
-  c = "!c() { cd \"$HOME/lapras/repos\"; gh repo clone \"$1\" \"$1\" -- --recurse-submodules; }; c"
+  c = "!c() { cd \"$HOME/dev/repos\"; gh repo clone \"$1\" \"$1\" -- --recurse-submodules; }; c"
   co = "commit -m"
   coa = "commit --amend"
   ch = "checkout"
