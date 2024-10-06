@@ -314,6 +314,12 @@ which helm >/dev/null || (
 )
 source <(helm completion zsh)
 
+# kustomize
+which kustomize >/dev/null || (
+  cd "$HOME/.local/bin"
+  curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+)
+
 # https://github.com/sh0rez/kubectl-neat-diff
 which kubectl-neat-diff >/dev/null || (
   cd "$HOME/.dotfiles/submodules/kubectl-neat-diff"
