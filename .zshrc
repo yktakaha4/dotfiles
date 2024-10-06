@@ -13,6 +13,7 @@ export PAGER="less"
 
 # local/bin
 mkdir -p "$HOME/.local/bin"
+export PATH="$HOME/.local/bin"
 
 # Set up the prompt
 
