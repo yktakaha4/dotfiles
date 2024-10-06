@@ -183,6 +183,15 @@ alias iam='aws sts get-caller-identity --query Arn --output text'
 
 # rcfiles and configs
 
+# awscli
+which aws >/dev/null || (
+  # https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html
+  cd "$(mktemp -d)"
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip
+  sudo ./aws/install
+)
+
 # git
 [[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
 [[ -e "$HOME/.gitignore_global" ]] || ln -s "$HOME/.dotfiles/.gitignore_global" "$HOME/.gitignore_global"
