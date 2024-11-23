@@ -20,6 +20,7 @@
   l = "log --oneline --graph --decorate"
   lv = "log --oneline --graph --pretty=fuller"
   ps = "push origin HEAD"
+  psf = "push --force-with-lease --force-if-includes HEAD"
   pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
   plu = "!gplu() { git pull upstream \"$(git symbolic-ref --short HEAD)\"; }; gpl"
   mgm = "!gmgm() { git merge \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gmgm"
@@ -33,6 +34,6 @@
   helper = !gh auth git-credential
 [core]
   longpaths = true
-  excludesfile = /home/tkhs/.gitignore_global
+	excludesfile = /home/yktakaha4/.gitignore_global
 [init]
 	defaultBranch = main
