@@ -161,10 +161,19 @@ alias kgno='kubectl get no -o wide'
 alias k9s='k9s --readonly'
 alias k9sw='\k9s'
 alias mk='minikube kubectl --'
-alias kgnos='kubectl get nodes -o "custom-columns=NAME:.metadata.name,CREATED:.metadata.creationTimestamp,TYPE:.metadata.labels.type,AVAIL_ZONE:.metadata.labels.topology\.kubernetes\.io/zone,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io/instance-type,CPU:.status.capacity.cpu,MEMORY:.status.capacity.memory,STORAGE:.status.capacity.ephemeral-storage,PODS:status.capacity.pods,INSTANCE_ID:spec.providerID" | sed "s@aws://.\+/@@g"'
-alias krno='kubectl resource-capacity --util --pod-count'
-alias krpo='kubectl resource-capacity --util --pod-count --pods'
-alias krco='kubectl resource-capacity --util --pod-count --containers'
+alias kgnos='kubectl get nodes -o "custom-columns=NODE:.metadata.name,CREATED:.metadata.creationTimestamp,TYPE:.metadata.labels.type,AVAIL_ZONE:.metadata.labels.topology\.kubernetes\.io/zone,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io/instance-type,CPU:.status.capacity.cpu,MEMORY:.status.capacity.memory,STORAGE:.status.capacity.ephemeral-storage,INSTANCE_ID:spec.providerID" | sed "s@aws://.\+/@@g"'
+alias kgnosw='kubectl get nodes -w -o "custom-columns=NODE:.metadata.name,CREATED:.metadata.creationTimestamp,TYPE:.metadata.labels.type,AVAIL_ZONE:.metadata.labels.topology\.kubernetes\.io/zone,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io/instance-type,CPU:.status.capacity.cpu,MEMORY:.status.capacity.memory,STORAGE:.status.capacity.ephemeral-storage,INSTANCE_ID:spec.providerID" | sed "s@aws://.\+/@@g"'
+alias krno='kubectl resource-capacity --util --pod-count | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
+alias krpo='kubectl resource-capacity --util --pod-count --pods | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
+alias krco='kubectl resource-capacity --util --pod-count --containers | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
+
+function kgrnos() {
+  tmp1="$(mktemp)"
+  tmp2="$(mktemp)"
+  kgnos > "$tmp1"
+  krno > "$tmp2"
+  join -a1 -j1 "$tmp1" "$tmp2" | column -t
+}
 
 function kgpobyno() {
   kubectl get po --field-selector "spec.nodeName=$1" ${@:2}
