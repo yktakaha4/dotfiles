@@ -203,7 +203,10 @@ which aws >/dev/null || (
 
 # git
 [[ -e "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
-[[ -e "$HOME/.gitignore_global" ]] || ln -s "$HOME/.dotfiles/.gitignore_global" "$HOME/.gitignore_global"
+[[ -e "$HOME/config/git/ignore" ]] || (
+  mkdir -p "$HOME/config/git/"
+  ln -s "$HOME/.dotfiles/.gitignore_global" "$HOME/config/git/ignore"
+)
 
 # vim
 [[ -e "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles/.vimrc" "$HOME/.vimrc"
