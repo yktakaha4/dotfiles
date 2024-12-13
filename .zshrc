@@ -307,6 +307,13 @@ which gh >/dev/null || (
 	&& sudo apt install gh -y
 )
 
+# trans
+which trans >/dev/null || (
+  sudo apt update
+  sudo apt install -y translate-shell
+)
+alias ja='trans -b en:ja'
+
 # kubectl
 which kubectl >/dev/null && source <(kubectl completion zsh)
 
