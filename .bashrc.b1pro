@@ -127,7 +127,7 @@ alias less='less -R'
 
 # uim-fep with tmux
 if [ ! $UIM_FEP_PID ]; then
-  uim-fep -s none
+  uim-fep -s none -e tmux
 fi
 
 # direnv
@@ -152,3 +152,6 @@ eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
+
+# vscode
+alias dev='code serve-web --without-connection-token --accept-server-license-terms --host $(tailscale ip -4) --port 18000'
