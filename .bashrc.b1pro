@@ -126,7 +126,7 @@ alias ja='trans -b en:ja'
 alias less='less -R'
 
 # uim-fep with tmux
-if [ ! $UIM_FEP_PID ]; then
+if [ ! $UIM_FEP_PID ] && [ ! "$TMUX" ]; then
   uim-fep -s none -e tmux
 fi
 
