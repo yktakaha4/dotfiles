@@ -130,6 +130,10 @@ if [ ! $UIM_FEP_PID ] && [ ! "$TMUX" ]; then
   uim-fep -s none -e tmux
 fi
 
+# code
+socket=$(ls -1t /run/user/$UID/vscode-ipc-*.sock 2> /dev/null | head -1)
+export VSCODE_IPC_HOOK_CLI=${socket}
+
 # direnv
 eval "$(direnv hook bash)"
 
