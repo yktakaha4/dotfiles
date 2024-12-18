@@ -6,9 +6,9 @@ base_dir="$(cd $(dirname $0); pwd)"
 
 $OAUTH2_PROXY_PATH \
     --https-address="0.0.0.0:18000" \
-    --upstream="http://127.0.0.1:18001/" \
     --tls-cert-file="/etc/nginx/ssl/server.crt" \
     --tls-key-file="/etc/nginx/ssl/server.key" \
+    --upstream="http://127.0.0.1:18001/" \
     --email-domain="*" \
     --provider="github" \
     --github-user="$GITHUB_USERS" \
@@ -16,5 +16,5 @@ $OAUTH2_PROXY_PATH \
     --client-id="$CLIENT_ID" \
     --client-secret="$CLIENT_SECRET" \
     --cookie-secret="$COOKIE_SECRET" \
-    --cookie-secure="true" \
+    --cookie-secure=true \
     --cookie-name="_oauth2_proxy_code_server"
