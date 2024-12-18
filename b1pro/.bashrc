@@ -154,12 +154,5 @@ eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
 
-# vscode
-alias dev='code serve-web --without-connection-token --accept-server-license-terms --host $(tailscale ip -4) --port 18000'
-
-# https://github.com/microsoft/vscode-remote-release/issues/2763
-socket=$(ls -1t /run/user/$UID/vscode-ipc-*.sock 2> /dev/null | head -1)
-export VSCODE_IPC_HOOK_CLI=${socket}
-
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
