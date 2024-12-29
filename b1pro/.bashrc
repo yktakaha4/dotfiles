@@ -118,12 +118,14 @@ fi
 
 # Customize
 export PATH="/home/tkhs/bin:$PATH"
+export EDITOR="vim"
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias k='kubectl'
 alias ja='trans -b en:ja'
 alias less='less -R'
+alias r='rails'
 
 # uim-fep with tmux
 if [ ! $UIM_FEP_PID ] && [ ! "$TMUX" ]; then
@@ -160,3 +162,6 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# rust
+. "$HOME/.cargo/env"

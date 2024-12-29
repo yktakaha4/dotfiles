@@ -1,4 +1,4 @@
-set title
+set notitle
 set ambiwidth=double
 set tabstop=4
 set expandtab
