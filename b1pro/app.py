@@ -48,7 +48,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 with open(file_path, "wb") as output_file:
                     output_file.write(file_item.file.read())
 
-                uploaded_path = f"{UPLOAD_COMPLETE_REDIRECT_PATH}/{filename}"
+                uploaded_path = f"{UPLOAD_COMPLETE_REDIRECT_PATH}"
                 return self.resp(msg=f"File uploaded: <a href=\"{uploaded_path}\">{filename}<a>")
             else:
                 return self.resp(msg="No file uploaded")
