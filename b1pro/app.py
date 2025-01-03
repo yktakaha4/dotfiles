@@ -1,10 +1,10 @@
 import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
-import shlex
 import datetime
 import urllib
 import urllib.parse
+import re
 
 UPLOAD_DIR = os.environ.get("PY_APP_UPLOAD_DIR") or "/usr/share/nginx/html/shared/uploads"
 UPLOAD_COMPLETE_REDIRECT_PATH = os.environ.get("PY_APP_UPLOAD_COMPLETE_REDIRECT_PATH") or "/shared/uploads"
@@ -40,11 +40,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             file_item = form["file"]
 
             if file_item.filename:
-                cleaned_filename = shlex.quote(os.path.basename(file_item.filename))
+                replace_pattern = r"[^a-zA-Z0-9_.-]"
+                cleaned_filename = os.path.basename(re.sub(replace_pattern, "_", file_item.filename))
                 timestamp_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                 filename = f"{timestamp_str}_{cleaned_filename}"
 
-                file_path = os.path.join(UPLOAD_DIR, filename)
+                allowed_path = os.path.abspath(UPLOAD_DIR)
+                file_path = os.path.abspath(os.path.join(allowed_path, filename))
+                if os.path.commonpath([file_path, allowed_path]) != allowed_path:
+                    return self.resp(msg="Invalid file path")
+
                 with open(file_path, "wb") as output_file:
                     output_file.write(file_item.file.read())
 
