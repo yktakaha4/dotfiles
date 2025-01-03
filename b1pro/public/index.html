@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>b1pro</title>
+  <style>
+    h2, ul { margin: 0; }
+    h1 > img { max-width: 1em; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <pre id="content">
+# ![](/capy.jpg) b1pro ![](/capy.jpg)
+
+<div id="msg"></div>
+
+## Apps
+- [VSCode](/code/)
+- [Mailpit](/mailpit/)
+- [Netdata](https://app.netdata.cloud/spaces/yk-takaha4-space/rooms/all-nodes/dashboards/b1pro)
+
+## Files
+- [Certs](/cert/)
+- [Shared](/shared/)
+
+<form action="/py/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="file"><button type="submit">Upload</button>
+</form>
+
+</pre>
+  <script src="vendor/marked.min.js"></script>
+  <script src="vendor/purify.min.js"></script>
+  <script>
+    const el = document.getElementById('content');
+    el.innerHTML = marked.parse(el.innerHTML);
+
+    const params = new URLSearchParams(location.search);
+    const msg = params.get('msg');
+    if (msg) {
+      document.getElementById('msg').innerHTML = DOMPurify.sanitize(msg);
+      history.replaceState(null, '', location.pathname);
+    }
+  </script>
+</body>
+</html>
