@@ -1,5 +1,10 @@
 #!/bin/sh -eu
 
+
+echo "=== start cleanup ==="
+date
+id
+
 echo "=== before ==="
 df -m
 
@@ -14,3 +19,7 @@ docker system prune -af
 
 echo "=== after ==="
 df -m
+
+echo "=== finish cleanup ==="
+date
+id
