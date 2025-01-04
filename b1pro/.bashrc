@@ -129,7 +129,11 @@ alias r='rails'
 
 # uim-fep with tmux
 if [ ! $UIM_FEP_PID ] && [ ! "$TMUX" ]; then
-  uim-fep -s none -e tmux
+  if $(tmux has-session 2>&1 /dev/null) ; then
+    uim-fep -s none -e tmux attach
+  else
+    uim-fep -s none -e tmux
+  fi
 fi
 
 # code
