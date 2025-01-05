@@ -35,7 +35,7 @@
   <script>
     try {
       const el = document.getElementById('content');
-      el.innerHTML = marked.parse(el.innerHTML);
+      el.innerHTML = DOMPurify.sanitize(marked.parse(el.innerHTML));
 
       const params = new URLSearchParams(location.search);
       const msg = params.get('msg');
