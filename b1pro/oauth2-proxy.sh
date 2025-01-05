@@ -2,7 +2,7 @@
 
 base_dir="$(cd $(dirname $0); pwd)"
 
-. "$base_dir/code-server-proxy.env"
+. "$base_dir/oauth2-proxy.env"
 
 $OAUTH2_PROXY_PATH \
     --http-address="127.0.0.1:34180" \
