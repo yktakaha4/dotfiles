@@ -9,7 +9,7 @@ import re
 UPLOAD_DIR = os.environ.get("PY_APP_UPLOAD_DIR") or "/usr/share/nginx/html/shared/uploads"
 UPLOAD_COMPLETE_REDIRECT_PATH = os.environ.get("PY_APP_UPLOAD_COMPLETE_REDIRECT_PATH") or "/shared/uploads"
 SERVER = os.environ.get("PY_APP_SERVER") or "127.0.0.1"
-PORT = int(os.environ.get("PY_APP_PORT") or 8181)
+PORT = int(os.environ.get("PY_APP_PORT") or 38181)
 BASE_PATH = os.environ.get("PY_APP_BASE_PATH") or "/py"
 
 
