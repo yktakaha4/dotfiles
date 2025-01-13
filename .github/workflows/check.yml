@@ -13,7 +13,10 @@ concurrency:
 jobs:
   lint:
     name: Lint
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +27,10 @@ jobs:
 
   test:
     name: Test
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
