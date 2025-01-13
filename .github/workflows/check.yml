@@ -13,10 +13,21 @@ jobs:
   lint:
     name: Lint
     runs-on: macos-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
       - run: make install
 
       - run: make lint
+
+  test:
+    name: Test
+    runs-on: macos-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: make install
+
+      - run: make test
