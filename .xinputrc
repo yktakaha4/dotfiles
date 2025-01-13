@@ -1,5 +1,0 @@
-run_im ibus
-
-if [ -f ~/.xmodmap ];then
-  xmodmap ~/.xmodmap
-fi
