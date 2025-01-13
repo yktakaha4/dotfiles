@@ -11,9 +11,11 @@ echo "install: $install_dir"
 
 if [ ! -e "$install_dir" ]; then
   ln -s "$base_dir" "$install_dir"
+  echo "link: $base_dir => $install_dir"
 fi
 
 . "$base_dir/.helper.zsh"
+. "$base_dir/.zprofile"
 
 echo "--- install dependencies ---"
 
@@ -23,7 +25,7 @@ echo "--- setup dotfiles ---"
 
 while read fname
 do
-  src="$base_dir/$fname"
+  src="$install_dir/$fname"
   dst="$HOME/$fname"
   if [ -e "$dst" ]; then
     echo "$fname: already exists"
