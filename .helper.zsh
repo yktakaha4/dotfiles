@@ -5,6 +5,10 @@ d_debug() {
   test -f "$HOME/.dotfiles_debug"
 }
 
+d_skip_ci() {
+  test -z "${DOTFILES_IS_CI:-}"
+}
+
 d_require() {
   which "$@" >/dev/null
 }

@@ -92,7 +92,9 @@ if d_require git; then
 fi
 
 if d_require tmux; then
-  tmux source-file "$HOME/.tmux.conf"
+  if d_skip_ci; then
+    tmux source-file "$HOME/.tmux.conf"
+  fi
 fi
 
 if d_require direnv; then

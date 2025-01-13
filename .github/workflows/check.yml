@@ -4,6 +4,7 @@ on: pull_request
 
 env:
   TZ: Asia/Tokyo
+  DOTFILES_IS_CI: "1"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
