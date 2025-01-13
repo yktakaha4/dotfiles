@@ -1,7 +1,9 @@
 # --- options ---
 
 autoload -Uz compinit add-zsh-hook
-compinit
+if d_skip_ci; then
+  compinit
+fi
 
 setopt \
   histignorealldups \
@@ -119,7 +121,9 @@ if d_require rbenv; then
 fi
 
 if d_require kubectl; then
-  source <(kubectl completion zsh)
+  if d_skip_ci; then
+    source <(kubectl completion zsh)
+  fi
 fi
 
 if d_require cargo; then

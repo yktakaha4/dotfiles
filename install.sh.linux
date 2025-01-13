@@ -3,6 +3,9 @@ sudo apt install -y \
   git \
   tmux \
   gh \
-  shellcheck
+  shellcheck \
+  curl
 
-sudo bpkg install -y shellspec/shellspec
+which shellspec >/dev/null || (
+  curl -fsSL https://git.io/shellspec | sh -s -- --yes
+)
