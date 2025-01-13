@@ -5,7 +5,10 @@ set -euo pipefail
 base_dir="$(cd "$(dirname "$0")"; pwd)"
 install_dir=${DOTFILES_INSTALL_DIR:-"$HOME/.dotfiles"}
 
+. "$base_dir/.helper.sh"
+
 echo "--- directories ---"
+echo "os     : $(d_os)"
 echo "base   : $base_dir"
 echo "install: $install_dir"
 
@@ -13,9 +16,6 @@ if [ ! -e "$install_dir" ]; then
   ln -s "$base_dir" "$install_dir"
   echo "link: $base_dir => $install_dir"
 fi
-
-. "$base_dir/.helper.zsh"
-. "$base_dir/.zprofile"
 
 echo "--- install dependencies ---"
 

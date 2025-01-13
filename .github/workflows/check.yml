@@ -6,10 +6,6 @@ env:
   TZ: Asia/Tokyo
   DOTFILES_IS_CI: "1"
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   lint:
     name: Lint
@@ -17,9 +13,6 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: zsh {0}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -34,9 +27,6 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: zsh {0}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4

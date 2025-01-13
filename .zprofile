@@ -1,4 +1,4 @@
-. "$HOME/.dotfiles/.helper.zsh"
+. "$HOME/.dotfiles/.helper.sh"
 
 if d_debug; then
   set -x

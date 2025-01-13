@@ -1,5 +1,5 @@
-Describe '.helper.zsh'
-  Include ./.helper.zsh
+Describe '.helper.sh'
+  Include ./.helper.sh
 
   Describe 'd_prompt'
     beforeEach() {
