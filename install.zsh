@@ -5,18 +5,21 @@ set -euo pipefail
 base_dir="$(cd "$(dirname "$0")"; pwd)"
 install_dir=${DOTFILES_INSTALL_DIR:-"$HOME/.dotfiles"}
 
-if [ "$base_dir" != "$install_dir" ]; then
-  echo "invalid path: expected=$install_dir, actual=$base_dir"
-  exit 1
+echo "--- directories ---"
+echo "base   : $base_dir"
+echo "install: $install_dir"
+
+if [ ! -e "$install_dir" ]; then
+  ln -s "$base_dir" "$install_dir"
 fi
 
 . "$base_dir/.helper.zsh"
 
-echo "install dependencies..."
+echo "--- install dependencies ---"
 
 "$base_dir/install.zsh.$(d_os)"
 
-echo "setup dotfiles..."
+echo "--- setup dotfiles ---"
 
 while read fname
 do
