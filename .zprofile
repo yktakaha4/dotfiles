@@ -1,4 +1,6 @@
-. "$HOME/.dotfiles/.helper.sh"
+export DOTFILES_ZPROFILE_LOADED=1
+
+source "$HOME/.dotfiles/.helper.sh"
 
 if d_debug; then
   set -x
@@ -6,5 +8,5 @@ if d_debug; then
 fi
 
 if d_exists "$DOTFILES_BASE_PATH/.zprofile.$(d_os)"; then
-  . "$DOTFILES_BASE_PATH/.zprofile.$(d_os)"
+  source "$DOTFILES_BASE_PATH/.zprofile.$(d_os)"
 fi

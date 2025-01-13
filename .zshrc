@@ -1,3 +1,7 @@
+if [ -z "$DOTFILES_ZPROFILE_LOADED" ]; then
+  source "$HOME/.zprofile"
+fi
+
 # --- options ---
 
 autoload -Uz compinit add-zsh-hook
@@ -85,7 +89,7 @@ add-zsh-hook precmd d_precmd
 add-zsh-hook preexec d_preexec
 
 if d_exists "$DOTFILES_BASE_PATH/.zshrc.$(d_os)"; then
-  . "$DOTFILES_BASE_PATH/.zshrc.$(d_os)"
+  source "$DOTFILES_BASE_PATH/.zshrc.$(d_os)"
 fi
 
 if d_require git; then
@@ -127,7 +131,7 @@ if d_require kubectl; then
 fi
 
 if d_require cargo; then
-  . "$HOME/.cargo/env"
+  source "$HOME/.cargo/env"
 fi
 
 # --- for debugging ---
