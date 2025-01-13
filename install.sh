@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -19,7 +19,7 @@ fi
 
 echo "--- install dependencies ---"
 
-"$base_dir/install.zsh.$(d_os)"
+"$base_dir/install.sh.$(d_os)"
 
 echo "--- setup dotfiles ---"
 

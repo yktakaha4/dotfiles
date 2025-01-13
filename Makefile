@@ -10,7 +10,7 @@ SHELL:=/bin/bash
 .PHONY: $(shell egrep -o ^[a-zA-Z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
 install: ## install files
-	./install.zsh
+	./install.sh
 
 lint: ## lint files
 	find . -name '*.zsh' -or -name '*.bash' -or -name '*.sh' -or -name '.zshrc*' -or -name '.zprofile*' \
