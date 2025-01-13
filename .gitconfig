@@ -1,0 +1,44 @@
+[user]
+  email = 20282867+yktakaha4@users.noreply.github.com
+  name = Yuuki Takahashi
+[alias]
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  a = "add ."
+  b = "branch -vv"
+  c = "!c() { cd \"$HOME/dev/repos\"; gh repo clone \"$1\" \"$1\" -- --recurse-submodules; }; c"
+  co = "commit -m"
+  coa = "commit --amend"
+  ch = "checkout"
+  chr = "checkout ."
+  chb = "checkout -b"
+  chm = "!gchm() { ref=\"$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | awk -F'[/]    ' '{print $NF}')\"; git checkout \"${ref:-main}\"; }; gchm"
+  cfg = "config --list"
+  d = "diff"
+  ds = "diff --staged"
+  f = "!f() { git fetch -p; git remote set-head origin --auto; }; f"
+  s = "status -s"
+  l = "log --oneline --graph --decorate"
+  lv = "log --oneline --graph --pretty=fuller"
+  ps = "push origin HEAD"
+  psf = "push --force-with-lease --force-if-includes origin HEAD"
+  pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
+  plu = "!gplu() { git pull upstream \"$(git symbolic-ref --short HEAD)\"; }; gpl"
+  mgm = "!gmgm() { git merge \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; gmgm"
+  rbm = "!grbm() { git rebase \"$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')\"; }; grbm"
+  subu = "submodule update --init --recursive"
+  pr = "!pr() {(gh pr create -w &) >/dev/null && echo 'open new pull request...';}; pr"
+  is = "!is() {(gh issue create -w &) >/dev/null && echo 'open new issue...';}; is"
+  open = "!open() {(gh repo view -w &) >/dev/null;}; open"
+  pwd = "!gpwd() { cd \"$(git rev-parse --show-superproject-working-tree --show-toplevel | head -1)\"; }; gpwd"
+  search = "!search() { git log -pS $@; }; search"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+  longpaths = true
+  fsmonitor = false
+  untrackedcache = true
+[init]
+  defaultBranch = main

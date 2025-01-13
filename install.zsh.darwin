@@ -1,0 +1,6 @@
+brew install \
+  git \
+  tmux \
+  gh \
+  shellspec \
+  shellcheck
