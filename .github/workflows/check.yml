@@ -15,8 +15,11 @@ jobs:
     name: Lint
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: zsh {0}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +32,11 @@ jobs:
     name: Test
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: zsh {0}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
