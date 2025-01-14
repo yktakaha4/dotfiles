@@ -1,0 +1,36 @@
+name: Check
+
+on: pull_request
+
+env:
+  TZ: Asia/Tokyo
+  DOTFILES_IS_CI: "1"
+
+jobs:
+  lint:
+    name: Lint
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: make install
+
+      - run: make lint
+
+  test:
+    name: Test
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: make install
+
+      - run: make test

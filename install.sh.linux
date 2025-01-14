@@ -1,0 +1,11 @@
+sudo apt install -y \
+  zsh \
+  git \
+  tmux \
+  gh \
+  shellcheck \
+  curl
+
+which shellspec >/dev/null || (
+  curl -fsSL https://git.io/shellspec | sh -s -- --yes
+)

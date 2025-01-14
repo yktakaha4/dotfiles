@@ -1,5 +1,1 @@
-.envrc
-/bin/direnv
-
 *.swp
-zsh.d/ignore-*
