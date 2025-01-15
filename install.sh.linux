@@ -2,10 +2,11 @@ sudo apt install -y \
   zsh \
   git \
   tmux \
-  gh \
-  shellcheck \
-  curl
+  gh
 
-which shellspec >/dev/null || (
-  curl -fsSL https://git.io/shellspec | sh -s -- --yes
-)
+if [ -n "$DOTFILES_INSTALL_DEV" ]; then
+  sudo apt install -y shellcheck curl
+  which shellspec >/dev/null || (
+    curl -fsSL https://git.io/shellspec | sh -s -- --yes
+  )
+fi
