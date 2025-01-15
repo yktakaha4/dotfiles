@@ -1,5 +1,7 @@
 # dotfiles
 
+xxx .
+
 ```bash
 make install
 
