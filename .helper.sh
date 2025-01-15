@@ -84,7 +84,7 @@ d_prompt() {
       unpushed="→"
     fi
 
-    if [ -n "$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | head -1)" ]; then
+    if [ -n "$(git log --oneline "$branch..origin/$branch" 2>/dev/null | head -1)" ]; then
       unpulled="↓"
     fi
     mark_fetch="$unpushed$unpulled"
