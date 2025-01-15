@@ -76,24 +76,18 @@ d_prompt() {
       mark_diff="$staged$unstaged$untracked"
     fi
 
-    rev_parse_local="$(git rev-parse @ 2>/dev/null)"
-    # shellcheck disable=SC1083
-    rev_parse_remote="$(git rev-parse @{u} 2>/dev/null)"
-    if [ "$rev_parse_local" = "$rev_parse_remote" ]; then
-      mark_fetch=""
-    elif [ -z "$rev_parse_remote" ]; then
-      mark_fetch="→"
-    else
-      # shellcheck disable=SC1083
-      rev_parse_base="$(git merge-base @ @{u} 2>/dev/null)"
-      if [ "$rev_parse_local" = "$rev_parse_base" ]; then
-        mark_fetch="↓"
-      elif [ "$rev_parse_remote" = "$rev_parse_base" ]; then
-        mark_fetch="↑"
-      else
-        mark_fetch="↓↑"
-      fi
+    unpushed=""
+    unpulled=""
+    if [ -n "$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | head -1)" ]; then
+      unpushed="↑"
+    elif [ -n "$(git branch -r 2>/dev/null | grep -m1 "$BRANCH")" ]; then
+      unpushed="→"
     fi
+
+    if [ -n "$(git log --oneline "$BRANCH..origin/$BRANCH" 2>/dev/null | head -1)" ]; then
+      unpulled="↓"
+    fi
+    mark_fetch="$unpushed$unpulled"
   fi
 
   mark="$mark_diff$mark_fetch"
