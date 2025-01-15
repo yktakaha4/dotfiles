@@ -98,7 +98,7 @@ if d_require git; then
 fi
 
 if d_require tmux; then
-  if d_skip_ci; then
+  if tmux info >/dev/null 2>&1; then
     tmux source-file "$HOME/.tmux.conf"
   fi
 fi
