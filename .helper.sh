@@ -78,9 +78,9 @@ d_prompt() {
 
     unpushed=""
     unpulled=""
-    if [ -n "$(git log --oneline "origin/$BRANCH..$BRANCH" 2>/dev/null | head -1)" ]; then
+    if [ -n "$(git log --oneline "origin/$branch..$branch" 2>/dev/null | head -1)" ]; then
       unpushed="↑"
-    elif [ -n "$(git branch -r 2>/dev/null | grep -m1 "$BRANCH")" ]; then
+    elif [ -z "$(git branch -r 2>/dev/null | grep -m1 "$branch")" ]; then
       unpushed="→"
     fi
 
