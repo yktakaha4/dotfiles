@@ -1,3 +1,7 @@
+base_dir="$(cd "$(dirname "$0")"; pwd)"
+
+. "$base_dir/.helper.sh"
+
 if d_require apt; then
   INSTALL_CMD="sudo apt install -y"
 elif d_require dnf; then
