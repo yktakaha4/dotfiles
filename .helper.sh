@@ -38,15 +38,20 @@ d_precmd() {
   DOTFILES_EXEC_TIME_NOW="$(d_now_ms)"
   DOTFILES_EXEC_TIME="$(echo "scale=1; ($DOTFILES_EXEC_TIME_NOW - ${DOTFILES_EXEC_TIME_START:-"$DOTFILES_EXEC_TIME_NOW"}) / 1000" | bc)s"
   DOTFILES_EXEC_TIME_START=""
+
+  DOTFILES_KUBE_CONTEXT=""
+  if d_require kubectl; then
+    kube_mark="⎈"
+    DOTFILES_KUBE_CONTEXT="$(kubectl config view --minify --output="jsonpath=$kube_mark:{..current-context}:{..namespace}" 2>/dev/null)"
+  fi
 }
 
 d_prompt() {
-  rc="$DOTFILES_RETURN_CODE"
-  dir="%~"
   branch=""
   mark_diff=""
   mark_fetch=""
 
+  rc="$DOTFILES_RETURN_CODE"
   if [ "$rc" = "0" ]; then
     rc=""
   fi
@@ -90,14 +95,10 @@ d_prompt() {
     mark_fetch="$unpushed$unpulled"
   fi
 
-  kube=""
-  if d_require kubectl; then
-    kube_mark="⎈"
-    kube="$(kubectl config view --minify --output="jsonpath=$kube_mark{..current-context}:{..namespace}" 2>/dev/null)"
-  fi
-
+  dir="%~"
   mark="$mark_diff$mark_fetch"
   time="$DOTFILES_EXEC_TIME"
+  kube="$DOTFILES_KUBE_CONTEXT"
 
   first="%F{8}${dir}${branch:+ $branch}%F{3}${mark:+ $mark}%F{4}${kube:+ $kube}%F{8}${time:+ $time}%F{1}${rc:+ ($rc)}"
   second="%f$ "
