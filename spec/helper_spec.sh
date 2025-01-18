@@ -46,7 +46,7 @@ Describe '.helper.sh'
          0 12345 "12.3s"
     End
 
-    It "エポックミリ秒が出力される($3)"
+    It "エポックミリ秒が変換される($3)"
       When call d_epoch_to_ms "$1" "$2"
       The output should equal "$3"
       The error should equal ""
