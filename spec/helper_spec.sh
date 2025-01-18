@@ -37,6 +37,23 @@ Describe '.helper.sh'
     End
   End
 
+  Describe 'd_epoch_to_ms'
+    Parameters
+         0     0 "0s"
+      1000  1000 "0s"
+      1000  2000 "1.0s"
+      1000  3499 "2.4s"
+         0 12345 "12.3s"
+    End
+
+    It "エポックミリ秒が出力される($3)"
+      When call d_epoch_to_ms "$1" "$2"
+      The output should equal "$3"
+      The error should equal ""
+      The status should equal 0
+    End
+  End
+
   Describe 'd_prompt'
     remote_dir="$(mktemp -d)" || exit
     beforeAll() {

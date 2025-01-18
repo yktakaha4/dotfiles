@@ -29,6 +29,12 @@ d_now_ms() {
   fi
 }
 
+d_epoch_to_ms() {
+  start="$1"
+  end="$2"
+  echo "$(echo "scale=1; ($end - ${start:-$end}) / 1000" | bc)s"
+}
+
 d_preexec() {
   DOTFILES_EXEC_TIME_START="$(d_now_ms)"
 }
@@ -36,7 +42,7 @@ d_preexec() {
 d_precmd() {
   DOTFILES_RETURN_CODE="$?"
   DOTFILES_EXEC_TIME_NOW="$(d_now_ms)"
-  DOTFILES_EXEC_TIME="$(echo "scale=1; ($DOTFILES_EXEC_TIME_NOW - ${DOTFILES_EXEC_TIME_START:-"$DOTFILES_EXEC_TIME_NOW"}) / 1000" | bc)s"
+  DOTFILES_EXEC_TIME="$(d_epoch_to_ms "$DOTFILES_EXEC_TIME_START" "$DOTFILES_EXEC_TIME_NOW")"
   DOTFILES_EXEC_TIME_START=""
 
   DOTFILES_KUBE_CONTEXT=""
