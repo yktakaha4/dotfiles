@@ -90,10 +90,16 @@ d_prompt() {
     mark_fetch="$unpushed$unpulled"
   fi
 
+  kube=""
+  if d_require kubectl; then
+    kube_mark="⎈"
+    kube="$kube_mark$(kubectl config view --minify --output="jsonpath={..current-context}:{..namespace}" 2>/dev/null)"
+  fi
+
   mark="$mark_diff$mark_fetch"
   time="$DOTFILES_EXEC_TIME"
 
-  first="%F{8}${dir}${branch:+ $branch}%F{3}${mark:+ $mark}%F{8}${time:+ $time}%F{1}${rc:+ ($rc)}"
+  first="%F{8}${dir}${branch:+ $branch}%F{3}${mark:+ $mark}%F{4}${kube:+ $kube}%F{8}${time:+ $time}%F{1}${rc:+ ($rc)}"
   second="%f$ "
   echo "
 ${first}
