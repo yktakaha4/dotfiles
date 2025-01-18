@@ -25,6 +25,8 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000
 export SAVEHIST=100000
 
+export PATH="$PATH:$HOME/bin"
+
 # --- aliases ---
 
 alias ls='ls --color'
