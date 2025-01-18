@@ -44,7 +44,9 @@ Describe '.helper.sh'
       1000    "" "0.0s"
       1500   500 "0.0s"
       # shellcheck disable=SC2286
-        ""  1500 "1.5s"
+        ""    "" "0.0s"
+      # shellcheck disable=SC2286
+        ""  1500 "0.0s"
       1000  2000 "1.0s"
       1000  3499 "2.5s"
          0 12345 "12.3s"

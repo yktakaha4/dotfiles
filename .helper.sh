@@ -30,8 +30,8 @@ d_now_ms() {
 }
 
 d_epoch_to_ms() {
-  start="${1:-0}"
-  end="${2:-$start}"
+  start="${1:-$2}"
+  end="${2:-$1}"
   if [ "$start" -gt "$end" ] 2>/dev/null; then
     start="$end"
   fi
