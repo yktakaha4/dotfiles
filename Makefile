@@ -18,6 +18,7 @@ dev: ## install dev
 lint: ## lint files
 	git config --list >/dev/null
 	find . -name '*.zsh' -or -name '*.bash' -or -name '*.sh' -or -name '.zshrc*' -or -name '.zprofile*' \
+  | grep -v ".ignore" \
   | xargs shellcheck -S warning
 
 test: ## test files
