@@ -12,8 +12,11 @@ fi
 bindkey -e
 
 setopt \
-  histignorealldups \
-  sharehistory \
+  hist_ignore_all_dups \
+  hist_expire_dups_first \
+  hist_ignore_dups \
+  hist_save_no_dups \
+  share_history \
   prompt_subst \
   ignoreeof \
   auto_cd \
