@@ -82,6 +82,7 @@ dcul() {
   dcu "$@" && dcl
 }
 
+alias myip='curl https://ifconfig.me/all'
 alias iam='aws sts get-caller-identity --query Arn --output text'
 
 alias editorconfig='cat "$DOTFILES_BASE_PATH/templates/.editorconfig"'
