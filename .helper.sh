@@ -93,7 +93,7 @@ d_prompt() {
   kube=""
   if d_require kubectl; then
     kube_mark="⎈"
-    kube="$kube_mark$(kubectl config view --minify --output="jsonpath={..current-context}:{..namespace}" 2>/dev/null)"
+    kube="$(kubectl config view --minify --output="jsonpath=$kube_mark{..current-context}:{..namespace}" 2>/dev/null)"
   fi
 
   mark="$mark_diff$mark_fetch"
