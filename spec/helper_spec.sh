@@ -39,14 +39,19 @@ Describe '.helper.sh'
 
   Describe 'd_epoch_to_ms'
     Parameters
-         0     0 "0s"
-      1000  1000 "0s"
+         0     0 "0.0s"
+      1000  1000 "0.0s"
+      1000    "" "0.0s"
+      1500   500 "0.0s"
+      # shellcheck disable=SC2286
+        ""  1500 "1.5s"
       1000  2000 "1.0s"
-      1000  3499 "2.4s"
+      1000  3499 "2.5s"
          0 12345 "12.3s"
+         x     y "0.0s"
     End
 
-    It "エポックミリ秒が変換される($3)"
+    It "エポックミリ秒が変換される($1, $2, $3)"
       When call d_epoch_to_ms "$1" "$2"
       The output should equal "$3"
       The error should equal ""

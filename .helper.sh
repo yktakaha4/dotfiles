@@ -30,9 +30,12 @@ d_now_ms() {
 }
 
 d_epoch_to_ms() {
-  start="$1"
-  end="$2"
-  echo "$(echo "scale=1; ($end - ${start:-$end}) / 1000" | bc)s"
+  start="${1:-0}"
+  end="${2:-$start}"
+  if [ "$start" -gt "$end" ] 2>/dev/null; then
+    start="$end"
+  fi
+  echo "$start $end" | awk '{printf("%.1fs\n",($2-$1)/1000)}'
 }
 
 d_preexec() {
