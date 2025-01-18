@@ -1,9 +1,44 @@
 Describe '.helper.sh'
   Include ./.helper.sh
 
-  remote_dir="$(mktemp -d)" || exit
+  Describe 'd_require'
+    It '依存解決ができる場合'
+      When call d_require git tmux
+      The output should equal ""
+      The error should equal ""
+      The status should equal 0
+    End
+
+    It '依存解決ができない場合'
+      When call d_require git unknowncommand
+      The output should equal ""
+      The error should equal ""
+      The status should equal 1
+    End
+  End
+
+  Describe 'd_exists'
+    It '対象が存在する場合'
+      target_file="$(mktemp)"
+      target_dir="$(mktemp -d)"
+
+      When call d_exists "$target_file" "$target_dir"
+      The output should equal ""
+      The error should equal ""
+      The status should equal 0
+    End
+
+    It '対象が存在しない場合'
+      target_file="$(mktemp)"
+      When call d_exists "$target_file" "./unknownfile"
+      The output should equal ""
+      The error should equal ""
+      The status should equal 1
+    End
+  End
 
   Describe 'd_prompt'
+    remote_dir="$(mktemp -d)" || exit
     beforeAll() {
       git clone -q "https://github.com/yktakaha4/dotfiles_test" "$remote_dir"
     }

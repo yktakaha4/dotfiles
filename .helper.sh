@@ -10,11 +10,11 @@ d_skip_ci() {
 }
 
 d_require() {
-  which "$@" >/dev/null 2>&1
+  which "$@" >/dev/null 2>&1 || return 1
 }
 
 d_exists() {
-  ls "$@" >/dev/null 2>&1
+  ls "$@" >/dev/null 2>&1 || return 1
 }
 
 d_os() {
