@@ -9,6 +9,8 @@ if d_skip_ci; then
   compinit
 fi
 
+bindkey -e
+
 setopt \
   histignorealldups \
   sharehistory \
