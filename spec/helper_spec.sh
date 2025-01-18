@@ -11,19 +11,21 @@ Describe '.helper.sh'
     It 'git管理外ではブランチ名が表示されない'
       When call d_prompt
       The output should equal "
-%F{8}%~%F{3}%F{8}%F{1}
+%F{8}%~%F{3}%F{4}%F{8}%F{1}
 %f$ "
     End
 
-    It '実行時間、エラーコードが表示される'
+    It '実行時間、エラーコード、k8sコンテキストが表示される'
       # shellcheck disable=SC2034
       DOTFILES_EXEC_TIME="3.5s"
       # shellcheck disable=SC2034
       DOTFILES_RETURN_CODE="127"
+      # shellcheck disable=SC2034
+      DOTFILES_KUBE_CONTEXT="ctx:ns"
 
       When call d_prompt
       The output should equal "
-%F{8}%~%F{3}%F{8} 3.5s%F{1} (127)
+%F{8}%~%F{3}%F{4} ctx:ns%F{8} 3.5s%F{1} (127)
 %f$ "
     End
 
@@ -32,7 +34,7 @@ Describe '.helper.sh'
 
       When call d_prompt
       The output should equal "
-%F{8}%~ main%F{3} →%F{8}%F{1}
+%F{8}%~ main%F{3} →%F{4}%F{8}%F{1}
 %f$ "
     End
 
@@ -42,7 +44,7 @@ Describe '.helper.sh'
 
       When call d_prompt
       The output should equal "
-%F{8}%~ main%F{3} ?→%F{8}%F{1}
+%F{8}%~ main%F{3} ?→%F{4}%F{8}%F{1}
 %f$ "
     End
 
@@ -53,7 +55,7 @@ Describe '.helper.sh'
 
       When call d_prompt
       The output should equal "
-%F{8}%~ main%F{3} +→%F{8}%F{1}
+%F{8}%~ main%F{3} +→%F{4}%F{8}%F{1}
 %f$ "
     End
 
@@ -62,7 +64,7 @@ Describe '.helper.sh'
 
       When call d_prompt
       The output should equal "
-%F{8}%~ main%F{3}%F{8}%F{1}
+%F{8}%~ main%F{3}%F{4}%F{8}%F{1}
 %f$ "
     End
   End
