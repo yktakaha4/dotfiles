@@ -22,7 +22,7 @@ jobs:
     name: Test
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [macos-14, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
