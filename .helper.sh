@@ -23,7 +23,11 @@ d_os() {
 
 d_now_ms() {
   if [ "$(d_os)" = "darwin" ]; then
-    date "+%s000"
+    if d_require perl; then
+      perl -MTime::HiRes -e 'printf("%.0f\n",Time::HiRes::time()*1000)'
+    else
+      date "+%s000"
+    fi
   else
     date "+%s%3N"
   fi
