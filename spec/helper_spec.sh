@@ -1,11 +1,18 @@
 Describe '.helper.sh'
   Include ./.helper.sh
 
+  remote_dir="$(mktemp -d)" || exit
+
   Describe 'd_prompt'
+    beforeAll() {
+      git clone -q "https://github.com/yktakaha4/dotfiles_test" "$remote_dir"
+    }
+
     beforeEach() {
       cd "$(mktemp -d)" || exit
     }
 
+    BeforeAll 'beforeAll'
     BeforeEach 'beforeEach'
 
     It 'git管理外ではブランチ名が表示されない'
@@ -59,13 +66,36 @@ Describe '.helper.sh'
 %f$ "
     End
 
-    It 'クローンしたリポジトリの場合マークが表示されない'
-      git clone -q "https://github.com/yktakaha4/dotfiles_test" .
+    It 'クローンした直後のリポジトリの場合pushマークが表示されない'
+      cp -pr "$remote_dir/." .
 
       When call d_prompt
       The output should equal "
 %F{8}%~ main%F{3}%F{4}%F{8}%F{1}
 %f$ "
     End
+
+		It 'コミットを積むとpushマークが表示される'
+			cp -pr "$remote_dir/." .
+      echo "new file" > new.txt
+      git add .
+      git commit -qm "add new file"
+
+			When call d_prompt
+      The output should equal "
+%F{8}%~ main%F{3} ↑%F{4}%F{8}%F{1}
+%f$ "
+		End
+
+    It 'force pushが必要な状態に対してpushマークが表示される'
+      cp -pr "$remote_dir/." .
+      git commit --amend -qm "amend"
+
+      When call d_prompt
+      The output should equal "
+%F{8}%~ main%F{3} ↑↓%F{4}%F{8}%F{1}
+%f$ "
+    End
+
   End
 End
