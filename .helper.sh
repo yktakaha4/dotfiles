@@ -21,6 +21,10 @@ d_os() {
   uname -s | tr '[:upper:]' '[:lower:]'
 }
 
+d_wsl() {
+  d_require clip.exe
+}
+
 d_now_ms() {
   if [ "$(d_os)" = "darwin" ]; then
     if d_require perl; then

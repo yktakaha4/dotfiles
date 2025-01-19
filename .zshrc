@@ -100,6 +100,10 @@ if d_exists "$DOTFILES_BASE_PATH/.zshrc.$(d_os)"; then
   source "$DOTFILES_BASE_PATH/.zshrc.$(d_os)"
 fi
 
+if d_wsl; then
+  source "$DOTFILES_BASE_PATH/.zshrc.wsl"
+fi
+
 if d_exists "$DOTFILES_BASE_PATH/.zshrc.ignore"; then
   source "$DOTFILES_BASE_PATH/.zshrc.ignore"
 fi
