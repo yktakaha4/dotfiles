@@ -1,6 +1,7 @@
 syntax enable
 
 set number
+set ruler
 set smartindent
 set showmatch
 set clipboard+=unnamed
