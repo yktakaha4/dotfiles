@@ -57,6 +57,7 @@ alias kgnosw='kubectl get nodes -w -o "custom-columns=NODE:.metadata.name,CREATE
 alias krno='kubectl resource-capacity --util --pod-count | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
 alias krpo='kubectl resource-capacity --util --pod-count --pods | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
 alias krco='kubectl resource-capacity --util --pod-count --containers | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
+alias krew='kubectl krew'
 
 kgrnos() {
   tmp1="$(mktemp)"
