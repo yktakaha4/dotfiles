@@ -144,6 +144,7 @@ if d_require kubectl; then
   if d_skip_ci; then
     source <(kubectl completion zsh)
   fi
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
 if d_require cargo; then
