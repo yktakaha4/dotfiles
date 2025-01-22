@@ -38,6 +38,7 @@
 	process = git-lfs filter-process
 	required = true
 [core]
+  excludesFile = ~/.gitignore_global
   longpaths = true
   fsmonitor = false
   untrackedcache = true
