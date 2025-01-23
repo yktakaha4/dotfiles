@@ -124,20 +124,25 @@ if d_require direnv; then
   eval "$(direnv hook zsh)"
 fi
 
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 if d_require goenv; then
-  export GOENV_ROOT="$HOME/.goenv"
-  export PATH="$GOENV_ROOT/bin:$PATH"
   eval "$(goenv init -)"
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 if d_require pyenv; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init - zsh)"
 fi
 
+export PATH="$HOME/.nodenv/bin:$PATH"
+if d_require nodenv; then
+  eval "$(nodenv init - zsh)"
+fi
+
+export PATH="$HOME/.rbenv/bin:$PATH"
 if d_require rbenv; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
@@ -148,6 +153,7 @@ if d_require kubectl; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
+export PATH="$HOME/.cargo/bin:$PATH"
 if d_require cargo; then
   source "$HOME/.cargo/env"
 fi
