@@ -146,6 +146,8 @@ if d_require rbenv; then
   eval "$(rbenv init -)"
 fi
 
+export PATH="$HOME/.tfenv/bin:$PATH"
+
 if d_require kubectl; then
   if d_skip_ci; then
     source <(kubectl completion zsh)
