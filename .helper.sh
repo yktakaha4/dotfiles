@@ -87,7 +87,7 @@ d_prompt() {
         staged="+"
       fi
 
-      if echo "$git_status" | grep -m1 -q '^.M\|^..M'; then
+      if echo "$git_status" | grep -m1 -q '^.[ACDMRTUXB]\|^..[ACDMRTUXB]'; then
         unstaged="*"
       fi
 
