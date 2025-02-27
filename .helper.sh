@@ -74,7 +74,7 @@ d_prompt() {
   fi
 
   if git rev-parse --is-inside-work-tree &>/dev/null; then
-    branch="$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null)"
+    branch="$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null || git branch --contains | awk '{gsub(/^\* /, "");print $0}' 2>/dev/null)"
     git_status="$(git status --porcelain 2>/dev/null)"
     if [ -z "$git_status" ]; then
       mark_diff=""
