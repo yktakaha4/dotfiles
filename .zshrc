@@ -25,6 +25,7 @@ setopt \
 
 export EDITOR=vim
 export PAGER=less
+export AWS_PAGER=""
 
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000
