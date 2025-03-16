@@ -89,14 +89,11 @@ alias iam='aws sts get-caller-identity --query Arn --output text'
 
 alias editorconfig='cat "$DOTFILES_BASE_PATH/templates/.editorconfig"'
 alias makefile='cat "$DOTFILES_BASE_PATH/templates/Makefile"'
+alias copilot_instructions="cat $DOTFILES_BASE_PATH/templates/copilot-instructions.md"
 alias docs='cat $DOTFILES_BASE_PATH/docs/README.md'
 
 # shellcheck disable=SC2154
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
-
-copilot_instructions() {
-  "$EDITOR" "$(git rev-parse --show-toplevel)/.github/copilot-instructions.md"
-}
 
 # --- settings ---
 
