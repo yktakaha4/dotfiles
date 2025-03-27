@@ -18,7 +18,7 @@
   d = "diff"
   ds = "diff --staged"
   f = "!f() { git fetch -p; git remote set-head origin --auto; }; f"
-  g = "grep -nE"
+  g = "grep -nIE"
   s = "status -s"
   l = "log --oneline --graph --decorate"
   lv = "log --oneline --graph --pretty=fuller"
