@@ -9,7 +9,7 @@
   ci = "!ci() { gh run list; }; ci"
   co = "commit -m"
   coa = "commit --amend"
-  code = "!c() { code \"$HOME/dev/repos/$repo\"; }; c"
+  code = "!c() { code \"$HOME/dev/repos/$1\"; }; c"
   ch = "switch"
   chr = "restore ."
   chb = "switch -c"
