@@ -8,6 +8,7 @@
   c = "!c() { cd \"$HOME/dev/repos\"; repo=$(echo \"$1\" | awk '{gsub(\"^https://github\\\\.com/|^git@github\\\\.com:|\\.git$\", \"\");print $0}'); gh repo clone \"$repo\" \"$repo\" -- --recurse-submodules; }; c"
   co = "commit -m"
   coa = "commit --amend"
+  code = "!c() { code \"$HOME/dev/repos/$repo\"; }; c"
   ch = "switch"
   chr = "restore ."
   chb = "switch -c"
