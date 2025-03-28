@@ -35,6 +35,8 @@ export PATH="$PATH:$HOME/bin"
 
 # --- aliases ---
 
+alias g='git'
+
 alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -la'
