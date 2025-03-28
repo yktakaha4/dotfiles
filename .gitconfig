@@ -29,6 +29,7 @@
   plu = "!gplu() { git pull upstream \"$(git symbolic-ref --short HEAD)\"; }; gpl"
   subu = "submodule update --init --recursive"
   pr = "!pr() {(gh pr create -w &) >/dev/null && echo 'open new pull request...';}; pr"
+  prc = "!prc() { gh pr checks -w; }; prc"
   is = "!is() {(gh issue create -w &) >/dev/null && echo 'open new issue...';}; is"
   open = "!open() {(gh repo view -w &) >/dev/null;}; open"
   rst = "reset --soft HEAD^"
