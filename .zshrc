@@ -165,9 +165,15 @@ if d_require cargo; then
   source "$HOME/.cargo/env"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+if d_require uv; then
+  source "$HOME/.local/bin/env"
+fi
+
 # --- for debugging ---
 if d_debug; then
   zprof
   set +x
 fi
 # --- for debugging ---
+
