@@ -166,7 +166,7 @@ if d_require cargo; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
-if d_require uv; then
+if d_exists "$HOME/.local/bin/env"; then
   source "$HOME/.local/bin/env"
 fi
 
