@@ -97,6 +97,32 @@ alias docs='cat $DOTFILES_BASE_PATH/docs/README.md'
 # shellcheck disable=SC2154
 alias colorpallet='for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 
+queryfile() {
+  fname="$1"
+  opts="-table"
+  separator=''
+
+  case "$fname" in
+  *\.tsv)
+    separator='\t'
+    ;;
+  *\.csv)
+    separator=','
+    ;;
+  esac
+
+  if [[ -n "$separator" ]]
+  then
+    dbfile="$(mktemp)"
+    table_name="file"
+    sqlite3 -separator "$separator" "$dbfile" ".import $fname $table_name"
+    sqlite3 $opts "$dbfile" "pragma table_info('file');"
+    fname="$dbfile"
+  fi
+
+  sqlite3 $opts "$fname"
+}
+
 # --- settings ---
 
 add-zsh-hook precmd d_precmd
