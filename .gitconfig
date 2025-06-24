@@ -16,6 +16,7 @@
   chm = "!gchm() { ref=\"$(git symbolic-ref -q --short refs/remotes/origin/HEAD | awk '{gsub(/^origin\\//, \"\", $1); print $1}')\"; git switch \"${ref:-main}\"; }; gchm"
   mgm = "!gmgm() { ref=\"$(git symbolic-ref -q --short refs/remotes/origin/HEAD | awk '{gsub(/^origin\\//, \"\", $1); print $1}')\"; git merge \"${ref:-main}\"; }; gmgm"
   rbm = "!grbm() { ref=\"$(git symbolic-ref -q --short refs/remotes/origin/HEAD | awk '{gsub(/^origin\\//, \"\", $1); print $1}')\"; git rebase \"${ref:-main}\"; }; grbm"
+  rbim = "!grbim() { ref=\"$(git symbolic-ref -q --short refs/remotes/origin/HEAD | awk '{gsub(/^origin\\//, \"\", $1); print $1}')\"; git rebase -i \"${ref:-main}\"; }; grbim"
   cfg = "config --list"
   d = "diff"
   ds = "diff --staged"
