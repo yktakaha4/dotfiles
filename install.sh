@@ -30,6 +30,7 @@ do
   if [ -e "$dst" ]; then
     echo "$fname: already exists"
   elif [ -e "$src" ]; then
+    mkdir -p "$(dirname "$dst")"
     ln -s "$src" "$dst"
     echo "$fname: create symlink"
   else
