@@ -44,6 +44,7 @@ done << EOF
 .tmux.conf
 .vimrc
 .claude/CLAUDE.md
+.claude/settings.json
 EOF
 
 echo "done."
