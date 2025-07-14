@@ -45,6 +45,7 @@ done << EOF
 .vimrc
 .claude/CLAUDE.md
 .claude/settings.json
+.claude/commands/analysis.md
 EOF
 
 echo "done."
