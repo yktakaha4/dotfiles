@@ -42,6 +42,7 @@ done << EOF
 .gitignore_global
 .tmux.conf
 .vimrc
+.claude/CLAUDE.md
 EOF
 
 echo "done."
