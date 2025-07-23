@@ -2,9 +2,6 @@ if [ -z "$DOTFILES_ZPROFILE_LOADED" ]; then
   source "$HOME/.zprofile"
 fi
 
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-
 # --- options ---
 
 autoload -Uz compinit add-zsh-hook
@@ -206,5 +203,3 @@ if d_debug; then
 fi
 # --- for debugging ---
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
