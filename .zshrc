@@ -155,6 +155,10 @@ if d_require direnv; then
   eval "$(direnv hook zsh)"
 fi
 
+if d_require mise; then
+  eval "$(mise activate zsh)"
+fi
+
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 if d_require goenv; then
