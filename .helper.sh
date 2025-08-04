@@ -25,6 +25,10 @@ d_wsl() {
   d_require clip.exe
 }
 
+d_datetime() {
+  date +%Y-%m-%dT%H:%M:%S
+}
+
 d_now_ms() {
   if [ "$(d_os)" = "darwin" ]; then
     if d_require perl; then
@@ -52,6 +56,7 @@ d_preexec() {
 
 d_precmd() {
   DOTFILES_RETURN_CODE="$?"
+  DOTFILES_EXEC_DATETIME="$(d_datetime)"
   DOTFILES_EXEC_TIME_NOW="$(d_now_ms)"
   DOTFILES_EXEC_TIME="$(d_epoch_to_ms "$DOTFILES_EXEC_TIME_START" "$DOTFILES_EXEC_TIME_NOW")"
   DOTFILES_EXEC_TIME_START=""
@@ -114,7 +119,7 @@ d_prompt() {
 
   dir="%~"
   mark="$mark_diff$mark_fetch"
-  dt="$(date +%Y-%m-%dT%H:%M:%S)"
+  dt="$DOTFILES_EXEC_DATETIME"
   time="$DOTFILES_EXEC_TIME"
   kube="$DOTFILES_KUBE_CONTEXT"
 
