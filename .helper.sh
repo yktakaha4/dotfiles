@@ -114,10 +114,11 @@ d_prompt() {
 
   dir="%~"
   mark="$mark_diff$mark_fetch"
+  dt="$(date +%Y-%m-%dT%H:%M:%S)"
   time="$DOTFILES_EXEC_TIME"
   kube="$DOTFILES_KUBE_CONTEXT"
 
-  first="%F{8}${dir}${branch:+ $branch}%F{3}${mark:+ $mark}%F{4}${kube:+ $kube}%F{8}${time:+ $time}%F{1}${rc:+ ($rc)}"
+  first="%F{8}${dir}${branch:+ $branch}%F{3}${mark:+ $mark}%F{4}${kube:+ $kube}%F{8}${dt:+ $dt}${time:+ $time}%F{1}${rc:+ ($rc)}"
   second="%f$ "
   echo "
 ${first}
