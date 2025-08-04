@@ -22,7 +22,10 @@ jobs:
     name: Test
     strategy:
       matrix:
-        os: [macos-14, ubuntu-24.04]
+        # https://github.com/actions/runner-images?tab=readme-ov-file#available-images
+        os:
+        - macos-15
+        - ubuntu-24.04
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:

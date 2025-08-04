@@ -37,6 +37,15 @@ Describe '.helper.sh'
     End
   End
 
+  Describe 'd_datetime'
+    It '現在日時が所定の書式で取得できる'
+      When call d_datetime
+      The output should match pattern '????-??-??T??:??:??'
+      The error should equal ""
+      The status should equal 0
+    End
+  End
+
   Describe 'd_epoch_to_ms'
     Parameters
          0     0 "0.0s"
