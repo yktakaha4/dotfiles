@@ -90,7 +90,8 @@ Describe '.helper.sh'
 %f$ "
     End
 
-    It '実行時間、エラーコード、k8sコンテキストが表示される'
+    It '時刻、実行時間、エラーコード、k8sコンテキストが表示される'
+      DOTFILES_EXEC_DATETIME="YYYY-MM-DDTHH:MM:SS"
       # shellcheck disable=SC2034
       DOTFILES_EXEC_TIME="3.5s"
       # shellcheck disable=SC2034
@@ -100,7 +101,7 @@ Describe '.helper.sh'
 
       When call d_prompt
       The output should equal "
-%F{8}%~%F{3}%F{4} ctx:ns%F{8} 3.5s%F{1} (127)
+%F{8}%~%F{3}%F{4} $DOTFILES_KUBE_CONTEXT%F{8} $DOTFILES_EXEC_DATETIME $DOTFILES_EXEC_TIME%F{1} ($DOTFILES_RETURN_CODE)
 %f$ "
     End
 
