@@ -34,6 +34,7 @@ export SAVEHIST=100000
 export PATH="$PATH:$HOME/bin"
 
 # --- aliases ---
+alias h='print -z -- "$(history -$HISTSIZE | sort -r | peco | sed -E "s/^ *[0-9]+ *//")"'
 
 alias g='git'
 
