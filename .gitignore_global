@@ -1,6 +1,7 @@
 *.swp
 tkhstmp/
 .idea/
+.DS_Store
 
 CLAUDE.md
 
