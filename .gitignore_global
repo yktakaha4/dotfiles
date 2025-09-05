@@ -2,6 +2,7 @@
 tkhstmp/
 .idea/
 .DS_Store
+.envrc
 
 CLAUDE.md
 
