@@ -3,6 +3,7 @@ tkhstmp/
 .idea/
 .DS_Store
 .envrc
+.claude/
 
 CLAUDE.md
 AGENTS.md
