@@ -90,6 +90,7 @@ dcul() {
 alias myip='curl https://ifconfig.me/all'
 
 alias iam='aws sts get-caller-identity --query Arn --output text'
+# shellcheck disable=SC2154
 alias aws2fa='echo -n "caller identity: $(iam)\nmfa serial: $(printenv AWS_MFA_SERIAL)\nenter token: " && read token && source <(aws sts get-session-token --token-code "$token" --serial-number "$(printenv AWS_MFA_SERIAL)" | jq -r ".Credentials | [\"export AWS_ACCESS_KEY_ID=\(.AccessKeyId)\", \"export AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey)\",\"export AWS_SESSION_TOKEN=\(.SessionToken)\", \"echo Expiration: \(.Expiration)\"] | @tsv" | tr "\t" "\n")'
 
 alias giam='gcloud config list account --format text'
