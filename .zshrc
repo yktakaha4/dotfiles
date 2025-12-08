@@ -197,7 +197,7 @@ if d_require kubectl; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
-if d_require cargo; then
+if d_require "$HOME/.cargo/env"; then
   source "$HOME/.cargo/env"
 fi
 
