@@ -2,3 +2,4 @@
 *.ignore
 *.ignore.*
 !/.claude/
+/.claude/*.local.json
