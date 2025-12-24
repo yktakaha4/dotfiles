@@ -1,5 +1,9 @@
 *.swp
 *.ignore
 *.ignore.*
+
 !/.claude/
 /.claude/*.local.json
+
+.system
+!AGENTS.md
