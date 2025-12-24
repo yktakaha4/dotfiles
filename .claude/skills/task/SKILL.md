@@ -1,5 +1,5 @@
 ---
-name: task
+name: task-skill
 description: 汎用的なタスクを実施する
 ---
 
