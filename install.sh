@@ -46,6 +46,7 @@ done << EOF
 .claude/CLAUDE.md
 .claude/settings.json
 .claude/commands
+.claude/skills
 EOF
 
 echo "done."
