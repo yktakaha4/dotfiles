@@ -48,7 +48,7 @@ done << EOF
 .claude/commands
 .claude/skills
 .codex/AGENTS.md
-.codex/skills
+.codex/skills/task
 EOF
 
 echo "done."
