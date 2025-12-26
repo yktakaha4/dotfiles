@@ -1,7 +1,9 @@
 {
     "permissions": {
         "allow": [
-            "Bash(mkdir -p tkhstmp/)"
+            "Bash(mkdir -p tkhstmp/)",
+            "Write(tkhstmp/**)",
+            "Edit(tkhstmp/**)"
         ],
         "deny": [
             "Bash(rm -rf /)",
