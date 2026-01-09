@@ -28,6 +28,7 @@
   ps = "push origin HEAD"
   psf = "push --force-with-lease --force-if-includes origin HEAD"
   pl = "!gpl() { git pull origin \"$(git symbolic-ref --short HEAD)\"; }; gpl"
+  plm = "!gplm() { ref=\"$(git symbolic-ref -q --short refs/remotes/origin/HEAD | awk '{gsub(/^origin\\//, \"\", $1); print $1}')\"; git pull origin \"${ref:-main}\"; }; gplm"
   plu = "!gplu() { git pull upstream \"$(git symbolic-ref --short HEAD)\"; }; gpl"
   subu = "submodule update --init --recursive"
   pr = "!pr() {(gh pr create -w &) >/dev/null && echo 'open new pull request...';}; pr"
