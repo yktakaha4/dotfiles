@@ -5,7 +5,7 @@
   ignore = "!gi() { curl -L -s \"https://www.gitignore.io/api/$1\" ;}; gi"
   a = "add ."
   b = "branch -vv"
-  c = "!c() { cd \"$HOME/dev/repos\"; repo=$(echo \"$1\" | awk '{gsub(\"^https://github\\\\.com/|^git@github\\\\.com:|\\\\.git$\", \"\");print $0}'); gh repo clone \"$repo\" \"$repo\" -- --recurse-submodules; }; c"
+  c = "!c() { mkdir -p \"$HOME/dev/repos\"; cd \"$HOME/dev/repos\"; repo=$(echo \"$1\" | awk '{gsub(\"^https://github\\\\.com/|^git@github\\\\.com:|\\\\.git$\", \"\");print $0}'); gh repo clone \"$repo\" \"$repo\" -- --recurse-submodules; }; c"
   ci = "!ci() { gh run list; }; ci"
   co = "commit -m"
   coa = "commit --amend"
