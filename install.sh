@@ -23,32 +23,45 @@ echo "--- install dependencies ---"
 
 echo "--- setup dotfiles ---"
 
-while read fname
+while read typ dname sname;
 do
-  src="$install_dir/$fname"
-  dst="$HOME/$fname"
+  if [ -z "$sname" ]; then
+    src="$install_dir/$dname"
+  else
+    src="$install_dir/$sname"
+  fi
+  dst="$HOME/$dname"
   if [ -e "$dst" ]; then
-    echo "$fname: already exists"
+    echo "$dname: already exists"
   elif [ -e "$src" ]; then
     mkdir -p "$(dirname "$dst")"
-    ln -s "$src" "$dst"
-    echo "$fname: create symlink"
+    if [ "$typ" = "cp" ]; then
+      rm -rvf "$dst"
+      cp -pr "$src" "$dst"
+      echo "$dname: copy files"
+    elif [ "$typ" != "ln" ]; then
+      ln -s "$src" "$dst"
+      echo "$dname: create symlink"
+    else
+      echo "invalid type: $typ"
+      exit 1
+    fi
   else
-    echo "$fname: source file not found in $base_dir"
+    echo "$dname: source file not found in $base_dir"
+    exit 1
   fi
 done << EOF
-.zprofile
-.zshrc
-.gitconfig
-.gitignore_global
-.tmux.conf
-.vimrc
-.claude/CLAUDE.md
-.claude/settings.json
-.claude/commands
-.claude/skills
-.codex/AGENTS.md
-.codex/skills
+ln .zprofile
+ln .zshrc
+ln .gitconfig
+ln .gitignore_global
+ln .tmux.conf
+ln .vimrc
+ln .claude/CLAUDE.md
+ln .claude/settings.json
+ln .codex/AGENTS.md
+cp .claude/skills/task templates/agent-skills/task
+cp .codex/skills/task templates/agent-skills/task
 EOF
 
 echo "done."
