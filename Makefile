@@ -15,6 +15,9 @@ install: ## install files
 dev: ## install dev
 	DOTFILES_INSTALL_DEV=1 ./install.sh
 
+update: ## update files
+	./update.sh
+
 lint: ## lint files
 	git config --list >/dev/null
 	find . -name '*.zsh' -or -name '*.bash' -or -name '*.sh' -or -name '.zshrc*' -or -name '.zprofile*' \
