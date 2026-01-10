@@ -39,7 +39,7 @@ do
       rm -rvf "$dst"
       cp -pr "$src" "$dst"
       echo "$dname: copy files"
-    elif [ "$typ" != "ln" ]; then
+    elif [ "$typ" = "ln" ]; then
       ln -s "$src" "$dst"
       echo "$dname: create symlink"
     else
