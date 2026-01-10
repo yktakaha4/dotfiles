@@ -1,4 +1,4 @@
-base_dir="$(cd "$(dirname "$0")"; pwd)"
+base_dir="$(cd "$(dirname "$0")" || exit; pwd)"
 
 . "$base_dir/.helper.sh"
 
