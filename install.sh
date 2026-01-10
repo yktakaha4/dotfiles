@@ -43,7 +43,7 @@ do
     if [ "$typ" = "cp" ]; then
       if [ -e "$dst" ]; then
         echo "$dname: remove existing files"
-        rm -rvf "$dst"
+        rm -rf "$dst"
       fi
       echo "$dname: copy files"
       cp -pr "$src" "$dst"
