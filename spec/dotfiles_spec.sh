@@ -1,11 +1,11 @@
 Describe 'Integrated test'
   It '読み込み時にエラーにならない'
-    setup() {
+    subject() {
       . ./.zprofile
       . ./.zshrc
     }
 
-    When call setup
+    When call subject
     The output should equal ""
     The error should equal ""
     The status should be success

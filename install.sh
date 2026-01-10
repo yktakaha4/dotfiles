@@ -25,7 +25,7 @@ echo "--- install dependencies ---"
 if [ -z "$skip_install_deps" ]; then
   "$base_dir/install_deps.$(d_os).sh"
 else
-  echo "skipped."
+  echo "install dependencies: skipped."
 fi
 
 echo "--- setup dotfiles ---"
