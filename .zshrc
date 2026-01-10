@@ -63,6 +63,9 @@ alias krpo='kubectl resource-capacity --util --pod-count --pods | sed -e "s/ \(R
 alias krco='kubectl resource-capacity --util --pod-count --containers | sed -e "s/ \(REQUESTS\|LIMITS\|UTIL\|COUNT\)/_\1/g" | sed -e "s/ (\([^)]*\))/(\1) /g"'
 alias krew='kubectl krew'
 
+alias kindup='kind create cluster --config "$DOTFILES_BASE_PATH/templates/kind.yaml" --wait 5m'
+alias kindown='kind delete cluster'
+
 kgrnos() {
   tmp1="$(mktemp)"
   tmp2="$(mktemp)"
