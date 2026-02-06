@@ -210,10 +210,11 @@ if d_exists "$HOME/.local/bin/env"; then
   source "$HOME/.local/bin/env"
 fi
 
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
 # --- for debugging ---
 if d_debug; then
   zprof
   set +x
 fi
 # --- for debugging ---
-
