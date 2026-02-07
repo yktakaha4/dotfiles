@@ -11,6 +11,7 @@
             "Bash(git mv *)",
             "Bash(git rm *)",
             "Bash(git diff *)",
+            "Bash(git commit *)",
             "Bash(git commit -m *)",
             "Bash(git branch *)",
             "Bash(git checkout *)",
