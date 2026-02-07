@@ -75,8 +75,9 @@ ln .vimrc
 ln .claude/CLAUDE.md
 ln .claude/settings.json
 ln .codex/AGENTS.md
-cp .claude/skills/task templates/agent-skills/task
-cp .codex/skills/task templates/agent-skills/task
+cp .claude/skills/task templates/agent-skills/claude-code/task
+cp .claude/agents templates/agent-definitions/claude-code
+cp .codex/skills/task templates/agent-skills/codex/task
 EOF
 
 echo "done."
