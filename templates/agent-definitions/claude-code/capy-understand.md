@@ -1,8 +1,10 @@
 ---
 name: capy-understand
 description: コードベースの調査・理解を実施する。ファイル構造の把握、実装の読み解き、依存関係の分析など
-tools: Read, Grep, Glob, Bash
-model: sonnet
+tools: Read, Grep, Glob
+permissionMode: dontAsk
+model: inherit
+memory: local
 ---
 
 # Understanding / 理解
