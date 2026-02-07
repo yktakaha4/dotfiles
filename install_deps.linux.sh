@@ -27,7 +27,8 @@ $INSTALL_CMD \
   zsh \
   git \
   tmux \
-  gh
+  gh \
+  jq
 
 which peco >/dev/null || (
   tmp_dir="$(mktemp -d)"

@@ -4,6 +4,7 @@ brew install \
   git \
   tmux \
   gh \
+  jq \
   peco
 
 if [ -n "$DOTFILES_INSTALL_DEV" ]; then
