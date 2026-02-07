@@ -1,14 +1,27 @@
 {
     "permissions": {
         "allow": [
-            "Bash(mkdir -p tkhstmp/)",
             "Write(tkhstmp/**)",
-            "Edit(tkhstmp/**)"
+            "Edit(tkhstmp/**)",
+            "Bash(mkdir -p tkhstmp/*)",
+            "Bash(git add *)",
+            "Bash(git status)",
+            "Bash(git log *)",
+            "Bash(git grep *)",
+            "Bash(git mv *)",
+            "Bash(git rm *)",
+            "Bash(git diff *)",
+            "Bash(git commit *)",
+            "Bash(git branch *)",
+            "Bash(git checkout *)",
+            "Bash(git switch *)",
+            "Bash(git reset *)",
+            "Bash(git rev-parse *)",
+            "Bash(date *)"
         ],
         "deny": [
-            "Bash(rm -rf /)",
-            "Bash(rm -rf ~)",
-            "Bash(rm -rf /*)"
+            "Bash(rm *)",
+            "Read(.envrc)"
         ]
     }
 }
