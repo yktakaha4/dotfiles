@@ -15,8 +15,10 @@
             "Bash(git commit -m *)",
             "Bash(git branch *)",
             "Bash(git checkout *)",
+            "Bash(git checkout -b *)",
             "Bash(git switch *)",
             "Bash(git reset *)",
+            "Bash(git reset --hard *)",
             "Bash(git rev-parse *)",
             "Bash(date *)"
         ],
