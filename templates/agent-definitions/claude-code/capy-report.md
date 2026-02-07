@@ -2,7 +2,9 @@
 name: capy-report
 description: タスクの実行結果を所定のテンプレートに従って記録する
 tools: Read, Grep, Glob, Bash, Write
-model: haiku
+permissionMode: acceptEdits
+model: inherit
+memory: local
 ---
 
 # Reporting / 記録
