@@ -4,7 +4,6 @@ description: タスクの実行結果を所定のテンプレートに従って�
 tools: Read, Grep, Glob, Bash, Write
 permissionMode: acceptEdits
 model: inherit
-memory: local
 ---
 
 # Reporting / 記録
