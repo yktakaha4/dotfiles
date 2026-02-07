@@ -1,7 +1,7 @@
 ---
 name: capy-research
 description: 外部情報の調査を実施する。公式ドキュメント、リポジトリ、技術仕様などの信頼性の高い情報源を優先して調査
-tools: WebSearch, Read, Grep, Glob, WebFetch
+tools: WebSearch, Read, Grep, Glob, MCPSearch
 permissionMode: dontAsk
 model: inherit
 memory: local
@@ -34,7 +34,9 @@ memory: local
 
 - WebSearchで複数の候補を取得し、信頼性の高い情報源を優先的に選択する
 - 公式サイトのドメイン（.org、公式GitHub、公式ドキュメントサイトなど）を優先する
-- WebFetchで取得した内容は、必要な部分のみを抽出して提示する
+- MCPSearchを使用して、複数のMCP検索サーバー（Brave Search、Tavily等）から情報を取得する
+  - 検索結果は要約されているため、詳細な情報が必要な場合は該当URLを参照する
+  - 検索結果に含まれるURLの信頼性を確認し、公式情報源を優先する
 
 ### プロジェクト理解
 
