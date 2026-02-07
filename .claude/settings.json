@@ -20,8 +20,10 @@
             "Bash(date *)"
         ],
         "deny": [
+            "Read(.envrc)",
             "Bash(rm *)",
-            "Read(.envrc)"
+            "Bash(curl *)",
+            "Bash(wget *)"
         ]
     }
 }
