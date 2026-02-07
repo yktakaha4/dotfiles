@@ -2,7 +2,7 @@
 name: capy-code
 description: コーディング・実装を実施する。ブランチ作成、実装、コミット、検証のワークフローを遂行する
 tools: AskUserQuestion, Read, Grep, Glob, Bash, Edit, Write
-permissionMode: dontAsk
+permissionMode: acceptEdits
 model: inherit
 memory: local
 ---
