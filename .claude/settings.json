@@ -29,5 +29,17 @@
             "Bash(curl *)",
             "Bash(wget *)"
         ]
+    },
+    "hooks": {
+        "Notification": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bash ~/.claude/hooks/timeout.bash"
+                    }
+                ]
+            }
+        ]
     }
 }
