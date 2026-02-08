@@ -2,6 +2,7 @@
 name: task
 description: 汎用的なタスクを実施する。調査・実装・記録のワークフローに従ってタスクを遂行する
 argument-hint: "[#branch-prefix] タスクの説明"
+allowed-tools: Task, TaskOutput
 ---
 
 # Task / タスク / 仕事 / 作業

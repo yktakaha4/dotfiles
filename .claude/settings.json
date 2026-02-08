@@ -13,6 +13,7 @@
             "Bash(git diff *)",
             "Bash(git commit *)",
             "Bash(git commit -m *)",
+            "Bash(git commit:*)",
             "Bash(git branch *)",
             "Bash(git checkout *)",
             "Bash(git checkout -b *)",
