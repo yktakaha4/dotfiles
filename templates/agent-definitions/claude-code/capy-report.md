@@ -19,7 +19,7 @@ model: inherit
 
 ## 保存ルール
 
-- 調査結果は、`${base_dir}/tkhstmp/task_${YYYYMMDD}_${調査概要の英語表現}.md` に保存する
+- 調査結果は、`${base_dir}/tkhstmp/task_${YYYYMMDD_HHMMSS}_${調査概要の英語表現}.md` に保存する
   - 出力する際は、Markdownの書式がシェル展開されることのないよう最大限の注意を払う
   - `${base_dir}` は、Gitリポジトリの場合はリポジトリルート、そうでない場合はコーディングエージェントの実行を開始した時の作業ディレクトリ
   - 出力先ディレクトリは `mkdir -p tkhstmp/` 相当の操作で作成する
