@@ -75,6 +75,7 @@ ln .vimrc
 ln .claude/CLAUDE.md
 ln .claude/settings.json
 ln .codex/AGENTS.md
+ln .claude/hooks/timeout.bash
 cp .claude/skills/task templates/agent-skills/claude-code/task
 cp .claude/agents/capy-understand.md templates/agent-definitions/claude-code/capy-understand.md
 cp .claude/agents/capy-report.md templates/agent-definitions/claude-code/capy-report.md
