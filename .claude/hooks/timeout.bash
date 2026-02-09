@@ -21,7 +21,7 @@ if [ "$initial_activity" != "$current_activity" ]; then
     exit 0
 fi
 
-if [ ! tmux capture-pane -p -t "$tmux_pane_id" | grep -q "Esc to cancel" ]; then
+if ! tmux capture-pane -p -t "$tmux_pane_id" | grep -q "Esc to cancel"; then
     exit 0
 fi
 
