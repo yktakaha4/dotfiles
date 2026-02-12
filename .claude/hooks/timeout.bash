@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-timeout=30
+timeout=5
 timeout_message="ユーザーが一定時間操作を行わなかったため、自動的にキャンセルされました。提案した作業は実施できないものとして作業を継続してください。"
 send_key_delay=1
 
