@@ -1,7 +1,10 @@
 ---
 name: capy-review
 description: 実装コードのレビューを実施する。コード品質、テスト、ドキュメント、セキュリティなどの観点で確認
-tools: Read, Grep, Glob
+tools:
+  - Read
+  - Grep
+  - Glob
 permissionMode: dontAsk
 model: inherit
 memory: local
