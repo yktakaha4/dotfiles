@@ -73,7 +73,6 @@ ln .gitignore_global
 ln .tmux.conf
 ln .vimrc
 ln .claude/CLAUDE.md
-ln .claude/settings.json
 ln .codex/AGENTS.md
 ln .claude/hooks/timeout.bash
 cp .claude/skills/task templates/agent-skills/claude-code/task
@@ -83,6 +82,31 @@ cp .claude/agents/capy-code.md templates/agent-definitions/claude-code/capy-code
 cp .claude/agents/capy-research.md templates/agent-definitions/claude-code/capy-research.md
 cp .claude/agents/capy-review.md templates/agent-definitions/claude-code/capy-review.md
 cp .codex/skills/task templates/agent-skills/codex/task
+EOF
+
+echo "--- merge json files ---"
+
+while read dname sname;
+do
+  src="$install_dir/$sname"
+  dst="$target_dir/$dname"
+  if [ -e "$src" ]; then
+    mkdir -p "$(dirname "$dst")"
+    if [ ! -e "$dst" ]; then
+      rm -f "$dst"
+      echo '{}' > "$dst"
+    fi
+
+    tmp="$(mktemp)"
+    jq -s '.[0] * .[1]' "$src" "$dst" > "$tmp"
+    cat "$tmp" > "$dst"
+    echo "$dname: merge $src to $dst"
+  else
+    echo "$dname: source file not found in $base_dir"
+    exit 1
+  fi
+done << EOF
+.claude/settings.json .claude/settings.base.json
 EOF
 
 echo "done."
