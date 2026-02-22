@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'capytool-v*'
+  workflow_dispatch:
 
 env:
   TZ: Asia/Tokyo
