@@ -32,7 +32,7 @@ $INSTALL_CMD \
 
 which peco >/dev/null || (
   tmp_dir="$(mktemp -d)"
-  arch="$(uname -m | sed 's/aarch64/arm64/')"
+  arch="$(d_arch)"
   curl -fsSL "https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_$arch.tar.gz" | tar -xz -C "$tmp_dir"
   mkdir -p "$HOME/.local/bin"
   mv -v "$tmp_dir/peco_linux_$arch/peco" "$HOME/.local/bin/peco"

@@ -21,6 +21,10 @@ d_os() {
   uname -s | tr '[:upper:]' '[:lower:]'
 }
 
+d_arch() {
+  uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/'
+}
+
 d_wsl() {
   d_require clip.exe
 }

@@ -37,6 +37,60 @@ Describe '.helper.sh'
     End
   End
 
+  Describe 'd_os'
+    It 'DarwinをそのままlowercaseにしてDarwinを返す'
+      Mock uname
+        echo "Darwin"
+      End
+      When call d_os
+      The output should equal "darwin"
+      The error should equal ""
+      The status should equal 0
+    End
+
+    It 'LinuxをそのままlowercaseにしてLinuxを返す'
+      Mock uname
+        echo "Linux"
+      End
+      When call d_os
+      The output should equal "linux"
+      The error should equal ""
+      The status should equal 0
+    End
+  End
+
+  Describe 'd_arch'
+    It 'x86_64をamd64に変換する'
+      Mock uname
+        echo "x86_64"
+      End
+      When call d_arch
+      The output should equal "amd64"
+      The error should equal ""
+      The status should equal 0
+    End
+
+    It 'aarch64をarm64に変換する'
+      Mock uname
+        echo "aarch64"
+      End
+      When call d_arch
+      The output should equal "arm64"
+      The error should equal ""
+      The status should equal 0
+    End
+
+    It 'arm64をそのまま返す'
+      Mock uname
+        echo "arm64"
+      End
+      When call d_arch
+      The output should equal "arm64"
+      The error should equal ""
+      The status should equal 0
+    End
+  End
+
   Describe 'd_datetime'
     It '現在日時が所定の書式で取得できる'
       When call d_datetime
