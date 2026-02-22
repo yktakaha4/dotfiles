@@ -73,7 +73,6 @@ ln .gitignore_global
 ln .tmux.conf
 ln .vimrc
 ln .claude/CLAUDE.md
-ln .claude/settings.json
 ln .codex/AGENTS.md
 ln .claude/hooks/timeout.bash
 cp .claude/skills/task templates/agent-skills/claude-code/task
