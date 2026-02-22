@@ -27,6 +27,7 @@ which capytool >/dev/null || (
   os="$(d_os)"
   arch="$(d_arch)"
   mkdir -p "$(dirname "$outpath")"
+  echo "install capytool_${os}_${arch}"
   curl -o "$outpath" -fsSL "https://github.com/yktakaha4/dotfiles/releases/latest/download/capytool_${os}_${arch}"
   chmod 0755 "$outpath"
 )
