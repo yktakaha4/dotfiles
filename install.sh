@@ -92,7 +92,7 @@ do
   dst="$target_dir/$dname"
   if [ -e "$src" ]; then
     mkdir -p "$(dirname "$dst")"
-    if [ -e "$dst" ]; then
+    if [ ! -e "$dst" ]; then
       rm -f "$dst"
       echo '{}' > "$dst"
     fi
