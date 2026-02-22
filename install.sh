@@ -22,6 +22,15 @@ fi
 
 echo "--- install dependencies ---"
 
+which capytool >/dev/null || (
+  outpath="$HOME/.local/bin/capytool"
+  os="$(d_os)"
+  arch="$(d_arch)"
+  mkdir -p "$(dirname "$outpath")"
+  curl -o "$outpath" -fsSL "https://github.com/yktakaha4/dotfiles/releases/latest/download/capytool_${os}_${arch}"
+  chmod 0755 "$outpath"
+)
+
 if [ -z "$skip_install_deps" ]; then
   "$base_dir/install_deps.$(d_os).sh"
 else
