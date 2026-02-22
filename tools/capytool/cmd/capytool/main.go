@@ -25,6 +25,16 @@ func run(args []string) error {
 	fs := flag.NewFlagSet("capytool", flag.ContinueOnError)
 	showVersion := fs.Bool("version", false, "print version and exit")
 
+	fs.Usage = func() {
+		fmt.Fprintf(fs.Output(), "Usage: capytool [flags] <command> [arguments]\n\n")
+		fmt.Fprintf(fs.Output(), "Commands:\n")
+		fmt.Fprintf(fs.Output(), "  generate-claude-code-settings <json-files...>\n")
+		fmt.Fprintf(fs.Output(), "    \tMerge JSON files and write the result to stdout.\n")
+		fmt.Fprintf(fs.Output(), "    \tLater files take precedence; array values are deduplicated.\n\n")
+		fmt.Fprintf(fs.Output(), "Flags:\n")
+		fs.PrintDefaults()
+	}
+
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
