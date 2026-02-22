@@ -60,12 +60,12 @@ Describe '.helper.sh'
   End
 
   Describe 'd_arch'
-    It 'x86_64をそのまま返す'
+    It 'x86_64をamd64に変換する'
       Mock uname
         echo "x86_64"
       End
       When call d_arch
-      The output should equal "x86_64"
+      The output should equal "amd64"
       The error should equal ""
       The status should equal 0
     End
