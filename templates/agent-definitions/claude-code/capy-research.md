@@ -1,8 +1,14 @@
 ---
 name: capy-research
 description: 外部情報の調査を実施する。公式ドキュメント、リポジトリ、技術仕様などの信頼性の高い情報源を優先して調査
-tools: Read, Grep, Glob, WebSearch, MCPSearch
-disallowedTools: WebFetch
+tools:
+  - Read
+  - Grep
+  - Glob
+  - WebSearch
+  - MCPSearch
+disallowedTools:
+  - WebFetch
 permissionMode: dontAsk
 model: inherit
 memory: local
