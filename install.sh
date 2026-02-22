@@ -84,29 +84,4 @@ cp .claude/agents/capy-review.md templates/agent-definitions/claude-code/capy-re
 cp .codex/skills/task templates/agent-skills/codex/task
 EOF
 
-echo "--- merge json files ---"
-
-while read dname sname;
-do
-  src="$install_dir/$sname"
-  dst="$target_dir/$dname"
-  if [ -e "$src" ]; then
-    mkdir -p "$(dirname "$dst")"
-    if [ ! -e "$dst" ]; then
-      rm -f "$dst"
-      echo '{}' > "$dst"
-    fi
-
-    tmp="$(mktemp)"
-    jq -s '.[0] * .[1]' "$src" "$dst" > "$tmp"
-    cat "$tmp" > "$dst"
-    echo "$dname: merge $src to $dst"
-  else
-    echo "$dname: source file not found in $base_dir"
-    exit 1
-  fi
-done << EOF
-.claude/settings.json .claude/settings.base.json
-EOF
-
 echo "done."
