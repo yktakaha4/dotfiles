@@ -27,6 +27,19 @@ lint: ## lint files
 test: ## test files
 	shellspec -f d
 
+build-tools: ## build tools
+	cd tools/capytool && go build -o ../../bin/capytool
+
+test-tools: ## test tools
+	cd tools/capytool && go test -v ./...
+
+install-tools: build-tools ## install tools
+	mkdir -p $(HOME)/bin
+	cp bin/capytool $(HOME)/bin/
+
+clean-tools: ## clean tools build artifacts
+	rm -f bin/capytool
+
 help: ## Print this help
 	echo 'Usage: make [target]'
 	echo ''

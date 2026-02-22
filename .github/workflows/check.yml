@@ -34,3 +34,21 @@ jobs:
       - run: make dev
 
       - run: make test
+
+  test-tools:
+    name: Test Tools
+    strategy:
+      matrix:
+        os:
+        - macos-15
+        - ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - run: make test-tools
