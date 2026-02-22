@@ -1,0 +1,108 @@
+name: Release capytool
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  TZ: Asia/Tokyo
+  GO_VERSION: "1.23"
+  WORKING_DIR: tools/capytool
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - run: go test -v -race ./...
+
+  setup:
+    name: Setup
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      tag: ${{ steps.generate-tag.outputs.tag }}
+    steps:
+      - name: Generate tag
+        id: generate-tag
+        run: echo "tag=capytool-$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build (${{ matrix.goos }}/${{ matrix.goarch }})
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        include:
+          - goos: darwin
+            goarch: amd64
+          - goos: darwin
+            goarch: arm64
+          - goos: linux
+            goarch: amd64
+          - goos: linux
+            goarch: arm64
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
+        run: |
+          go build \
+            -ldflags="-X main.buildVersion=${{ needs.setup.outputs.tag }}" \
+            -o ./bin/capytool_${{ matrix.goos }}_${{ matrix.goarch }} \
+            ./cmd/capytool
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capytool_${{ matrix.goos }}_${{ matrix.goarch }}
+          path: ${{ env.WORKING_DIR }}/bin/capytool_${{ matrix.goos }}_${{ matrix.goarch }}
+
+  release:
+    name: Release
+    needs: [setup, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: capytool_*
+          path: ./artifacts
+          merge-multiple: true
+
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ needs.setup.outputs.tag }}" \
+            --title "capytool ${{ needs.setup.outputs.tag }}" \
+            --notes "Release ${{ needs.setup.outputs.tag }}" \
+            ./artifacts/capytool_*

@@ -10,7 +10,7 @@ tools:
 disallowedTools:
   - WebFetch
 permissionMode: dontAsk
-model: inherit
+model: haiku
 memory: local
 ---
 

@@ -6,7 +6,7 @@ tools:
   - Grep
   - Glob
 permissionMode: dontAsk
-model: inherit
+model: haiku
 memory: local
 ---
 

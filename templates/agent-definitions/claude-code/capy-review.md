@@ -6,7 +6,7 @@ tools:
   - Grep
   - Glob
 permissionMode: dontAsk
-model: inherit
+model: sonnet
 memory: local
 ---
 

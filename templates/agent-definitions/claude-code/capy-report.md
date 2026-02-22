@@ -9,7 +9,7 @@ tools:
   - Edit
   - Write
 permissionMode: acceptEdits
-model: inherit
+model: haiku
 ---
 
 # Reporting / 記録
