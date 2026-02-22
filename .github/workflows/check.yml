@@ -5,6 +5,7 @@ on: push
 env:
   TZ: Asia/Tokyo
   DOTFILES_IS_CI: "1"
+  GO_VERSION: "1.23"
 
 jobs:
   lint:
@@ -59,7 +60,7 @@ jobs:
       - uses: actions/setup-go@v5
         if: steps.check_changes.outputs.changed == 'true'
         with:
-          go-version: "1.23"
+          go-version: ${{ env.GO_VERSION }}
 
       - run: go test -v -race ./...
         if: steps.check_changes.outputs.changed == 'true'
