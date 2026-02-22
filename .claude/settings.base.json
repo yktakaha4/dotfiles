@@ -21,6 +21,10 @@
         ],
         "deny": [
             "Read(.envrc)",
+            "Bash(git push:*)",
+            "Bash(git pull:*)",
+            "Bash(git clone:*)",
+            "Bash(git fetch:*)",
             "Bash(rm:*)",
             "Bash(curl:*)",
             "Bash(wget:*)"
