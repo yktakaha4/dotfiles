@@ -7,3 +7,6 @@
 
 .system
 !AGENTS.md
+
+# capytool build artifacts
+/tools/capytool/bin/
