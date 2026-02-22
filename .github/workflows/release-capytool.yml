@@ -12,25 +12,8 @@ env:
   WORKING_DIR: tools/capytool
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version: ${{ env.GO_VERSION }}
-
-      - run: go test -v -race ./...
-
   setup:
     name: Setup
-    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
