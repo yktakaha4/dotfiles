@@ -4,30 +4,26 @@
             "Write(tkhstmp/**)",
             "Edit(tkhstmp/**)",
             "Bash(mkdir -p tkhstmp/*)",
-            "Bash(git add *)",
-            "Bash(git status)",
-            "Bash(git log *)",
-            "Bash(git grep *)",
-            "Bash(git mv *)",
-            "Bash(git rm *)",
-            "Bash(git diff *)",
-            "Bash(git commit *)",
-            "Bash(git commit -m *)",
+            "Bash(git add:*)",
+            "Bash(git status:*)",
+            "Bash(git log:*)",
+            "Bash(git grep:*)",
+            "Bash(git mv:*)",
+            "Bash(git rm:*)",
+            "Bash(git diff:*)",
             "Bash(git commit:*)",
-            "Bash(git branch *)",
-            "Bash(git checkout *)",
-            "Bash(git checkout -b *)",
-            "Bash(git switch *)",
-            "Bash(git reset *)",
-            "Bash(git reset --hard *)",
-            "Bash(git rev-parse *)",
-            "Bash(date *)"
+            "Bash(git branch:*)",
+            "Bash(git checkout:*)",
+            "Bash(git switch:*)",
+            "Bash(git reset:*)",
+            "Bash(git rev-parse:*)",
+            "Bash(date:*)"
         ],
         "deny": [
             "Read(.envrc)",
-            "Bash(rm *)",
-            "Bash(curl *)",
-            "Bash(wget *)"
+            "Bash(rm:*)",
+            "Bash(curl:*)",
+            "Bash(wget:*)"
         ]
     }
 }
