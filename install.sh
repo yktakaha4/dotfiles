@@ -23,7 +23,7 @@ fi
 echo "--- install dependencies ---"
 
 which capytool >/dev/null || (
-  outpath="$HOME/.local/bin/capytool"
+  outpath="$target_dir/.local/bin/capytool"
   os="$(d_os)"
   arch="$(d_arch)"
   mkdir -p "$(dirname "$outpath")"
@@ -93,5 +93,17 @@ cp .claude/agents/capy-research.md templates/agent-definitions/claude-code/capy-
 cp .claude/agents/capy-review.md templates/agent-definitions/claude-code/capy-review.md
 cp .codex/skills/task templates/agent-skills/codex/task
 EOF
+
+echo "--- setup claude code settings ---"
+(
+  if [ ! -e "$target_dir/.claude/settings.json" ]; then
+    mkdir -p "$target_dir/.claude"
+    echo "{}" > "$target_dir/.claude/settings.json"
+  fi
+
+  tmpfile="$(mktemp)"
+  capytool generate-claude-code-settings "$install_dir/.claude/settings.base.json" "$target_dir/.claude/settings.json" > "$tmpfile"
+  mv -f "$tmpfile" "$target_dir/.claude/settings.json"
+)
 
 echo "done."
