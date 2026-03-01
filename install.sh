@@ -22,7 +22,7 @@ fi
 
 echo "--- install dependencies ---"
 
-which capytool >/dev/null || (
+(
   outpath="$target_dir/.local/bin/capytool"
   os="$(d_os)"
   arch="$(d_arch)"
