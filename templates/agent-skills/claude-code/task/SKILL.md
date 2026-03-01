@@ -62,16 +62,18 @@ allowed-tools: Task, TaskOutput
 - **引き継ぎ情報**: タスク説明、ブランチプレフィックス、Phase 1の調査結果（実施した場合）
 - **subagent_type**: `capy-code`
 
-#### Phase 2.2: capy-review - レビュー（Phase 2.1を実施した場合のみ）
+#### Phase 2.2: レビュー（Phase 2.1を実施した場合のみ）
 
-Phase 2.1で実装を行った場合、コードレビューを実施する。
+Phase 2.1で実装を行った場合、コードレビューを実施する。`capy-review` と `capy-review-codex` を**並列に**実行する。
 
 - **判定基準**: Phase 2.1で`capy-code`が実行された場合
 - **引き継ぎ情報**: タスク説明、ブランチ名、Phase 2.1の実装結果
-- **subagent_type**: `capy-review`
+- **実行するサブエージェント（並列）**:
+  - `capy-review`（subagent_type: `capy-review`）: 静的コードレビュー
+  - `capy-review-codex`（subagent_type: `capy-review-codex`）: Codex CLIを使ったレビュー
 - **注意**: Phase 2.1を実施していない場合（調査のみのタスク）は、このフェーズをスキップする
 
-レビューで問題が発見された場合:
+レビューで問題が発見された場合（両レビューの結果を統合して判断する）:
 
 - **Critical問題がある場合**: ユーザーに報告し、修正方針を確認する
 - **Warningのみの場合**: 問題点を記録に残し、Phase 3へ進む
@@ -92,5 +94,6 @@ Phase 2.1で実装を行った場合、コードレビューを実施する。
   - どちらか一方で十分な場合は、そちらのみ実行する
 - Phase 1とPhase 2は、タスクの性質に応じて片方のみ実行する場合もある
 - Phase 2.2（レビュー）は、Phase 2.1（実装）を実施した場合のみ実行する
+- Phase 2.2では `capy-review` と `capy-review-codex` を常に並列実行する
 - Phase 3（記録）は常に最後に実行する
 - サブエージェントの実行結果は、次のフェーズに引き継ぐ
