@@ -30,6 +30,7 @@ which capytool >/dev/null || (
   echo "install capytool_${os}_${arch}"
   curl -o "$outpath" -fsSL "https://github.com/yktakaha4/dotfiles/releases/latest/download/capytool_${os}_${arch}"
   chmod 0755 "$outpath"
+  capytool --version
 )
 
 if [ -z "$skip_install_deps" ]; then
