@@ -1,3 +1,7 @@
+if ! (( $+functions[d_skip_ci] )); then
+  source "$HOME/.dotfiles/.helper.sh"
+fi
+
 if [ -z "$DOTFILES_ZPROFILE_LOADED" ]; then
   source "$HOME/.zprofile"
 fi
