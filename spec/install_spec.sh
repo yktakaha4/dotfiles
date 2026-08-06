@@ -7,9 +7,6 @@ Describe 'install.sh'
 
     touch "$DOTFILES_TARGET_DIR/.zprofile"
 
-    mkdir -p "$DOTFILES_TARGET_DIR/.codex/skills/task"
-    touch "$DOTFILES_TARGET_DIR/.codex/skills/task/existing_file.md"
-
     ./install.sh
   }
 
@@ -32,10 +29,6 @@ Describe 'install.sh'
 
     The path "$DOTFILES_TARGET_DIR/.zprofile" should be a file
 
-    The path "$DOTFILES_TARGET_DIR/.claude/skills/task/SKILL.md" should be a file
-
-    The path "$DOTFILES_TARGET_DIR/.codex/skills/task/SKILL.md" should be a file
-    The path "$DOTFILES_TARGET_DIR/.codex/skills/task/existing_file.md" should not be exist
   End
 
   It 'claude codeの設定ファイルが生成される'

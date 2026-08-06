@@ -86,14 +86,12 @@ ln .vimrc
 ln .claude/CLAUDE.md
 ln .codex/AGENTS.md
 ln .claude/hooks/timeout.bash
-cp .claude/skills/task templates/agent-skills/claude-code/task
 cp .claude/agents/capy-understand.md templates/agent-definitions/claude-code/capy-understand.md
 cp .claude/agents/capy-report.md templates/agent-definitions/claude-code/capy-report.md
 cp .claude/agents/capy-code.md templates/agent-definitions/claude-code/capy-code.md
 cp .claude/agents/capy-research.md templates/agent-definitions/claude-code/capy-research.md
 cp .claude/agents/capy-review.md templates/agent-definitions/claude-code/capy-review.md
 cp .claude/agents/capy-review-codex.md templates/agent-definitions/claude-code/capy-review-codex.md
-cp .codex/skills/task templates/agent-skills/codex/task
 EOF
 
 echo "--- setup claude code settings ---"
