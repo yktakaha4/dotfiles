@@ -2,12 +2,10 @@
 *.ignore
 *.ignore.*
 
-!/.claude/
 /.claude/agent-memory-local/
 /.claude/*.local.json
 
 .system
-!AGENTS.md
 
 # capytool build artifacts
 /tools/capytool/bin/

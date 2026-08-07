@@ -83,27 +83,6 @@ ln .gitconfig
 ln .gitignore_global
 ln .tmux.conf
 ln .vimrc
-ln .claude/CLAUDE.md
-ln .codex/AGENTS.md
-ln .claude/hooks/timeout.bash
-cp .claude/agents/capy-understand.md templates/agent-definitions/claude-code/capy-understand.md
-cp .claude/agents/capy-report.md templates/agent-definitions/claude-code/capy-report.md
-cp .claude/agents/capy-code.md templates/agent-definitions/claude-code/capy-code.md
-cp .claude/agents/capy-research.md templates/agent-definitions/claude-code/capy-research.md
-cp .claude/agents/capy-review.md templates/agent-definitions/claude-code/capy-review.md
-cp .claude/agents/capy-review-codex.md templates/agent-definitions/claude-code/capy-review-codex.md
 EOF
-
-echo "--- setup claude code settings ---"
-(
-  if [ ! -e "$target_dir/.claude/settings.json" ]; then
-    mkdir -p "$target_dir/.claude"
-    echo "{}" > "$target_dir/.claude/settings.json"
-  fi
-
-  tmpfile="$(mktemp)"
-  capytool generate-claude-code-settings "$install_dir/.claude/settings.base.json" "$target_dir/.claude/settings.json" > "$tmpfile"
-  mv -f "$tmpfile" "$target_dir/.claude/settings.json"
-)
 
 echo "done."

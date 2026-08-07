@@ -3,10 +3,3 @@ tkhstmp/
 .idea/
 .DS_Store
 .envrc
-.claude/
-
-CLAUDE.md
-AGENTS.md
-
-# https://docs.github.com/ja/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot
-.github/copilot-instructions.md

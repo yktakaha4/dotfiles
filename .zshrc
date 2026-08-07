@@ -104,7 +104,6 @@ alias giam='gcloud config list account --format text'
 
 alias editorconfig='cat "$DOTFILES_BASE_PATH/templates/.editorconfig"'
 alias makefile='cat "$DOTFILES_BASE_PATH/templates/Makefile"'
-alias copilot_instructions='cat $DOTFILES_BASE_PATH/templates/copilot-instructions.md'
 alias docs='cat $DOTFILES_BASE_PATH/docs/README.md'
 alias dupdate='$DOTFILES_BASE_PATH/update.sh'
 
