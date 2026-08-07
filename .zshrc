@@ -1,3 +1,4 @@
+# shellcheck disable=SC2154 # zsh special parameter and function lookup syntax
 if ! (( $+functions[d_skip_ci] )); then
   source "$HOME/.dotfiles/.helper.sh"
 fi
