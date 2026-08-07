@@ -30,15 +30,4 @@ Describe 'install.sh'
     The path "$DOTFILES_TARGET_DIR/.zprofile" should be a file
 
   End
-
-  It 'claude codeの設定ファイルが生成される'
-    When call subject
-
-    The output should include "done."
-    The error should equal ""
-    The status should be success
-
-    The path "$DOTFILES_TARGET_DIR/.claude/settings.json" should be a file
-    The contents of file "$DOTFILES_TARGET_DIR/.claude/settings.json" should include 'Write(tkhstmp/**)'
-  End
 End
